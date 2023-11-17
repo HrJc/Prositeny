@@ -95,27 +95,28 @@ $query_builder = TRUE;
 // 	'save_queries' => TRUE
 // );
 
-// $db['default'] = array(
-// 	'dsn'	=> '',
-// 	'hostname' => '192.168.88.78',
-// 	'username' => 'root',
-// 	'password' => 'toliarainfo',
-// 	'database' => 'des',
-// 	'dbdriver' => 'mysqli',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'production'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );
+$db['maria_db'] = array(
+	'dsn'	=> '',
+	'hostname' => '164.92.254.213',
+	'username' => 'db_sms_admin',
+	'password' => 'LPVsbGzikHpQGjCVSgV12gPXKiQzjNLb',
+	'database' => 'db_sms',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
 
 $db['default'] = array(
 	'dsn'	=> '',
@@ -138,3 +139,4 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+

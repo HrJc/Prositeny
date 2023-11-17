@@ -1216,6 +1216,38 @@ class Utilisateurs extends CI_Controller {
 		$this->load->view('utilisateurs/liste_resultat2', $data);
 		$this->load->view('layout/footer');
 	}
+
+	public function cronSMS() {
+		$data = $this->db->query("SELECT * FROM base_sms_tur WHERE etat = 0")->result();
+		$this->maria = $this->load->database('maria_db', TRUE);
+	
+		foreach ($data as $key => $value) {
+			// Vérifiez si le code_bv existe dans la table base_sms_mad
+			$existingCodeBV = $this->maria->get_where('base_sms_mad', array('code_bv' => $value->CODE_BV))->row();
+	
+			if (!$existingCodeBV) {
+				// Le code_bv n'existe pas, on peut insérer les données
+				$dateMadagascar = new DateTime('now', new DateTimeZone('Indian/Antananarivo'));
+				$dateFormatted = $dateMadagascar->format('Y-m-d H:i:s');
+	
+				$donnee = array(
+					'code_bv' => $value->CODE_BV,
+					'voix13' => $value->voix13,
+					'voix03' => $value->voix03,
+					'voix05' => $value->voix05,
+					'PresentVote' => $value->total,
+					'date' => $dateFormatted // Utilisez la date ajustée pour Madagascar
+				);
+	
+				$this->maria->insert('base_sms_mad', $donnee);
+	
+				$sql = "UPDATE base_sms_tur SET etat = 1 WHERE CODE_BV=" . $value->CODE_BV;
+				$this->db->query($sql);
+			}
+		}
+	
+		echo ('okok');
+	}
 	
 }
 
