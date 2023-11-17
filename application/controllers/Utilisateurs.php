@@ -201,55 +201,55 @@ class Utilisateurs extends CI_Controller {
 
 	public function listerDeleger()
 	{
-		// $fr = $this->input->post("fr");
-		// $rg = $this->input->post("rg");
-		// $ds = $this->input->post("ds");
+		$fr = $this->input->post("fr");
+		$rg = $this->input->post("rg");
+		$ds = $this->input->post("ds");
 	
 
-		// if ($fr == "tous" && $rg == "tous" && $ds == "tous") {
+		if ($fr == "tous" && $rg == "tous" && $ds == "tous") {
 
-		// 	if ($_SESSION['type'] == 'Administrateur') {
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->login_model->getListeDelegue();	
+			if ($_SESSION['type'] == 'Administrateur') {
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->login_model->getListeDelegue();	
 				
-		// 	}else {
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->db->query("select * from delegue where rg in (  " . implode(",",$_SESSION['tabRegion'] ) . " ) limit 10")->result_array();	
-		// 	}
+			}else {
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->db->query("select * from delegue where rg in (  " . implode(",",$_SESSION['tabRegion'] ) . " ) limit 10")->result_array();	
+			}
 
-		// } 
-		// else if ($fr == "tous" && $rg != "tous" && $ds == "tous") {
+		} 
+		else if ($fr == "tous" && $rg != "tous" && $ds == "tous") {
 
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->db->query("select * from delegue where rg = $rg")->result_array();		
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->db->query("select * from delegue where rg = $rg")->result_array();		
 		
-		// }
+		}
 
-		// else if ($fr == "tous" && $rg != "tous" && $ds != "tous") {
+		else if ($fr == "tous" && $rg != "tous" && $ds != "tous") {
 
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->db->query("select * from delegue where rg = $rg and ds = $ds")->result_array();		
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->db->query("select * from delegue where rg = $rg and ds = $ds")->result_array();		
 		
-		// }
-		// else if ($fr != "tous" && $rg == "tous" && $ds == "tous") {
+		}
+		else if ($fr != "tous" && $rg == "tous" && $ds == "tous") {
 
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->db->query("select * from delegue where fr = $fr ")->result_array();	
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->db->query("select * from delegue where fr = $fr ")->result_array();	
 
-		// } 
-		// else if ($fr != "tous" && $rg != "tous" && $ds == "tous") {
+		} 
+		else if ($fr != "tous" && $rg != "tous" && $ds == "tous") {
 
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->db->query("select * from delegue where fr = $fr and  rg = $rg ")->result_array();		
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->db->query("select * from delegue where fr = $fr and  rg = $rg ")->result_array();		
 		
-		// }
+		}
 
-		// else if ($fr != "tous" && $rg != "tous" && $ds != "tous") {
+		else if ($fr != "tous" && $rg != "tous" && $ds != "tous") {
 			
-		// 		$draw = intval($this->input->get("draw"));
-		// 		$datauser = $this->db->query("select * from delegue where fr = $fr and  rg = $rg and ds = $ds ")->result_array();		
+				$draw = intval($this->input->get("draw"));
+				$datauser = $this->db->query("select * from delegue where fr = $fr and  rg = $rg and ds = $ds ")->result_array();		
 		
-		// }
+		}
 		
 
         if(sizeof($datauser) == 0)
