@@ -210,13 +210,16 @@
 
                 <div style="display: inline-block">
                 <?php
-                    if ($type !== "Administrateur") {
-                        $regionn = $region[0]->LIBELLE_REGION;
+                    if ($type !== "Administrateur") {                        
                         if (isset($district)) {
                             $regionn = 'DISTRICT - '.$district[0]->LIBELLE_DISTRICT;
+                        }else if($type == "Invite"){
+                            $regionn = "INVITE";
+                        }else if($type == "Administrateur"){
+                            $regionn = "ADMINISTRATEUR";
+                        }else {
+                            $regionn = $region[0]->LIBELLE_REGION;
                         }
-                    } else {
-                        $regionn = "ADMINISTRATEUR";
                     }
                     ?>
                     <strong class="title">Bonjour <?php echo $regionn ?></strong>
