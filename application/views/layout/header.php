@@ -216,10 +216,12 @@
                         }else if($type == "Invite"){
                             $regionn = "INVITE";
                         }else if($type == "Administrateur"){
-                            $regionn = "ADMINISTRATEUR";
+                            
                         }else {
                             $regionn = $region[0]->LIBELLE_REGION;
                         }
+                    }else {
+                        $regionn = "ADMINISTRATEUR";
                     }
                     ?>
                     <strong class="title">Bonjour <?php echo $regionn ?></strong>
