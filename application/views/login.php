@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+</head>
+
+<style>
+    *{ 
+margin: 0px;  
+padding: 0px;  
+box-sizing: border-box; 
+} 
+
+ 
+
+body, html { 
+height: 100%; 
+font-family: 'Baloo 2', cursive; 
+} 
+
+ 
+
+input { 
+outline: none; 
+border: none; 
+} 
+
+ 
+
+button { 
+outline: none !important; 
+border: none; 
+background: transparent; 
+} 
+
+ 
+
+button:hover { 
+cursor: pointer; 
+} 
+
+ 
+
+ 
+
+/*-- contenedor del Login--*/ 
+
+ 
+
+.container-login { 
+width: 100%;   
+min-height: 100vh; 
+display: -webkit-flex; 
+display: flex; 
+flex-wrap: wrap; 
+justify-content: center; 
+align-items: center; 
+padding: 15px; 
+background: -webkit-linear-gradient(to right, #00c3ff, #ffff1c); 
+background: linear-gradient(to right, #00c3ff, #ffff1c); 
+} 
+
+ 
+
+.wrap-login { 
+width: 400px; 
+background: #eceff1; 
+border-radius: 20px; 
+overflow: hidden; 
+padding: 77px 55px 53px 55px; 
+-webkit-box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38); 
+} 
+
+ 
+
+ 
+
+/*----Formulario de user y password----*/ 
+
+ 
+
+.login-form { 
+width: 100%; 
+} 
+
+ 
+
+.login-form-title { 
+display: block; 
+font-family: 'Baloo 2', cursive; 
+font-size: 40px; 
+color: #333333; 
+line-height: 1.5; 
+text-align: center; 
+} 
+
+ 
+
+.avatar{ 
+
+ /*Centrar imagen*/ 
+
+display: block; 
+margin:auto; 
+width: 80px;  
+height: 80px; 
+ } 
+
+ 
+
+ 
+
+/*------------------------------------------------------------------ 
+
+[ Input ]*/ 
+
+ .wrap-input100 { 
+width: 100%; 
+position: relative; 
+border-bottom: 2px solid #adadad; 
+margin-bottom: 37px; 
+} 
+
+ 
+
+.input100 { 
+font-family: 'Baloo 2', cursive; 
+font-size: 15px; 
+color: #555555; 
+line-height: 1.2; 
+display: block; 
+width: 100%; 
+height: 45px; 
+background: transparent; 
+padding: 0 5px; 
+} 
+
+ 
+
+/*---------------------------------------------*/  
+
+.focus-efecto { 
+position: absolute; 
+display: block; 
+width: 100%; 
+height: 100%; 
+top: 0; 
+left: 0; 
+pointer-events: none; 
+} 
+
+ 
+
+.focus-efecto::before { 
+content: ""; 
+display: block; 
+position: absolute; 
+bottom: -2px; 
+left: 0; 
+width: 0; 
+height: 4px; /*ancho de la linea que hace el efecto de barra de progeso en el input al hacer foco*/ 
+-webkit-transition: all 0.4s; 
+-o-transition: all 0.4s; 
+-moz-transition: all 0.4s; 
+transition: all 0.4s; 
+background: #6a7dfe; 
+background: -webkit-linear-gradient(left, #00c3ff, #ffff1c); 
+background: -o-linear-gradient(left, #00c3ff, #ffff1c); 
+background: -moz-linear-gradient(left, #00c3ff, #ffff1c); 
+background: linear-gradient(left, #00c3ff, #ffff1c); 
+} 
+
+ 
+
+.focus-efecto::after { 
+
+font-family: 'Baloo 2', cursive; 
+
+font-size: 15px; 
+
+color: #999999; 
+
+line-height: 1.2; 
+
+ 
+
+content: attr(data-placeholder); 
+
+display: block; 
+
+width: 100%; 
+
+position: absolute; 
+
+top: 16px; 
+
+left: 0px; 
+
+padding-left: 5px; 
+
+ 
+
+-webkit-transition: all 0.4s; 
+
+-o-transition: all 0.4s; 
+
+-moz-transition: all 0.4s; 
+
+transition: all 0.4s; 
+
+} 
+
+ 
+
+.input100:focus + .focus-efecto::after { 
+
+top: -15px; 
+
+} 
+
+ 
+
+.input100:focus + .focus-efecto::before { 
+
+width: 100%; 
+
+} 
+
+ 
+
+.has-val.input100 + .focus-efecto::after { 
+
+top: -15px; 
+
+} 
+
+ 
+
+.has-val.input100 + .focus-efecto::before { 
+
+width: 100%; 
+
+} 
+
+ 
+
+/*---------------------------------------------*/ 
+
+ 
+
+ 
+
+/*------------------------------------------------------------------ 
+
+[ Button ]*/ 
+
+.container-login-form-btn { 
+
+display: -webkit-box; 
+
+display: -webkit-flex; 
+
+display: -moz-box; 
+
+display: -ms-flexbox; 
+
+display: flex; 
+
+flex-wrap: wrap; 
+
+justify-content: center; 
+
+padding-top: 13px; 
+
+} 
+
+ 
+
+.wrap-login-form-btn { 
+
+width: 100%; 
+
+display: block; 
+
+position: relative; 
+
+z-index: 1; 
+
+border-radius: 40px 5px; 
+
+overflow: hidden; 
+
+margin: 0 auto; 
+
+} 
+
+ 
+
+.login-form-bgbtn { 
+
+position: absolute; 
+
+z-index: -1; 
+
+width: 300%; 
+
+height: 100%; 
+
+background: #a64bf4; 
+
+background: -webkit-linear-gradient(right, #00c3ff, #ffff1c, #00c3ff, #ffff1c); 
+
+background: -o-linear-gradient(right, #00c3ff, #ffff1c, #00c3ff, #ffff1c); 
+
+background: -moz-linear-gradient(right, #00c3ff, #ffff1c, #00c3ff, #ffff1c); 
+
+background: linear-gradient(right, #00c3ff, #ffff1c, #00c3ff, #ffff1c); 
+
+top: 0; 
+
+left: -100%; 
+
+ 
+
+-webkit-transition: all 0.4s; 
+
+-o-transition: all 0.4s; 
+
+-moz-transition: all 0.4s; 
+
+transition: all 0.4s; 
+
+} 
+
+ 
+
+.login-form-btn { 
+
+font-family: 'Baloo 2', cursive; 
+
+font-size: 20px; 
+
+color: #fff; 
+
+line-height: 1.2; 
+
+text-transform: uppercase; 
+
+ 
+
+display: -webkit-box; 
+
+display: -webkit-flex; 
+
+display: -moz-box; 
+
+display: -ms-flexbox; 
+
+display: flex; 
+
+justify-content: center; 
+
+align-items: center; 
+
+padding: 0 20px; 
+
+width: 100%; 
+
+height: 50px; 
+
+} 
+
+ 
+
+.wrap-login-form-btn:hover .login-form-bgbtn { 
+
+left: 0; 
+
+}	 
+
+ 
+
+nav.navbar a.navbar-brand{ 
+
+font-size: 30px; 
+
+color: #fff; 
+
+display: inline-block; 
+
+font-family: 'Baloo 2', cursive; 
+
+padding: 0 20px; 
+
+} 
+
+a.navbar-brand::after{ 
+
+content: ''; 
+
+display: block; 
+
+width: 0; 
+
+height: 2px; 
+
+background: #fff; 
+
+transition: width .3s; 
+
+} 
+
+a.navbar-brand:hover::after{ 
+
+width: 100%; 
+
+transition: width .3s; 
+
+} 
+
+ 
+
+ 
+
+ 
+
+img .circular{ 
+
+border-radius: 50%; 
+
+} 
+
+ 
+
+nav.navbar  
+
+{ 
+
+-webkit-box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38); 
+
+background: -webkit-linear-gradient(to right, #00c3ff, #ffff1c); 
+
+background: linear-gradient(to right, #00c3ff, #ffff1c); 
+
+border-radius: 0 0 10px 10px; 
+
+} 
+
+ 
+
+nav.navbar li.nav-item a.nav-link{ 
+
+font-size: 20px; 
+
+color: #fff; 
+
+display: inline-block; 
+
+font-family: 'Baloo 2', cursive; 
+
+padding: 0 20px; 
+
+} 
+
+nav.navbar li.nav-item a.nav-link::after{ 
+
+ 
+
+content: ''; 
+
+display: block; 
+
+width: 0; 
+
+height: 2px; 
+
+background: #fff; 
+
+transition: width .3s; 
+
+} 
+
+ 
+
+nav.navbar li.nav-item a.nav-link:hover::after{ 
+
+width: 100%; 
+
+transition: width .3s; 
+
+} 
+
+ 
+
+div .container-c{ 
+
+width: 100%;   
+
+min-height: 100vh; 
+
+display: -webkit-flex; 
+
+display: flex; 
+
+flex-wrap: wrap; 
+
+justify-content: center; 
+
+align-items: center; 
+
+padding: 15px; 
+
+background: -webkit-linear-gradient(to right, #00c3ff, #ffff1c); 
+
+background: linear-gradient(to right, #00c3ff, #ffff1c); 
+
+} 
+
+ 
+</style>
+
+
+<body>
+	
+</body>
+</html>
+<body> 
+
+<div class="container-login"> 
+	<div class="wrap-login"> 
+		<form class="form-login" action="<?php echo base_url(); ?>login/verificationUser" autocomplete="off" method="POST">   
+			<!-- LOGO --> 
+			<span class="login-form-title" style="margin-bottom: 20px;">Login</span> 
+				<!-- USUARIO --> 
+				<div id="profile-name" class="profile-name-card" style="text-align : center;">
+				<div class="alert alert-danger text-center" id="div-message">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <?php echo $retVal = ($this->session->flashdata('login-msg')) ? $this->session->flashdata('login-msg') : "Veuillez-vous identifier"; ?>
+				</div>
+		
+			<div class="wrap-input100"> 
+				<input class="input100" type="text" name="pseudo" placeholder="User">	 
+				<span class="focus-efecto"></span> 
+			</div> 
+			<!-- CONTRASEÑA --> 
+			<div class="wrap-input100"> 
+				<input class="input100" type="password" name="password" placeholder="Passsword"> 
+				<span class="focus-efecto"></span> 
+			</div> 
+			<!-- BOTÓN --> 
+			<div class="container-login-form-btn"> 
+				<div class="wrap-login-form-btn"> 
+					<div class="login-form-bgbtn"></div> 
+					<button type="submit" class="login-form-btn">Se connecter</button> 
+				</div> 
+			</div>
+		</form> 
+	</div> 
+</div> 
+			
+</body> 
+
+<script>
+
+
+
+</script>
+
+</html> 
