@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 				'type' => $datauser->type,
 			);
 			$this->session->set_userdata($tabSession);
-			redirect('Utilisateurs/chartDelege','location');		
+			redirect('AdminCont/resultat','location');		
 		}
 		else{
 			$this->session->set_flashdata('login-msg', "Nom d'utilisateur ou mot de passe invalide");
