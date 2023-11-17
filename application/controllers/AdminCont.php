@@ -857,14 +857,15 @@ public function sendsms2()
 				
 				foreach ($dat as $value) {
 					if($value->voix03 && $value->voix05 && $value->voix13 && $value->total){
-						$dat = $this->db->query("select * from base_sms_tur where CODE_BV = ".$value->CODE_BV."")->row();
-						if ($dat == null) {
+						$data = $this->db->query("select * from base_sms_tur where CODE_BV = ".$value->CODE_BV."")->row();
+						if ($data == null) {
 							$way = array(
 								"voix03"=> $value->voix03,
 								"voix05"=> $value->voix05,
 								"voix13"=> $value->voix13,
 								"total"=> $value->total,
 								"CODE_BV"=> $value->CODE_BV,
+								"etat" => 0
 								
 							);
 							$this->db->insert("base_sms_tur", $way);
@@ -875,7 +876,7 @@ public function sendsms2()
 								"voix05"=> $value->voix05,
 								"voix13"=> $value->voix13,
 								"total"=> $value->total,
-								
+								"etat" => 0
 							);
 							$this->db->where("CODE_BV")->update("base_sms_tur", $way);
 						}
