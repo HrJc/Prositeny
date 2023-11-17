@@ -857,7 +857,7 @@ public function sendsms2()
 				
 				foreach ($dat as $value) {
 					if($value->voix03 && $value->voix05 && $value->voix13 && $value->total){
-						$dat = $this->db->query("select * from base_sms_tur where etat = 3")->row();
+						$dat = $this->db->query("select * from base_sms_tur where CODE_BV = ".$value->CODE_BV."")->row();
 						if ($dat == null) {
 							$way = array(
 								"voix03"=> $value->voix03,
