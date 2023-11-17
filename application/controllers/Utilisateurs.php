@@ -1220,6 +1220,7 @@ class Utilisateurs extends CI_Controller {
 	public function cronSMS() {
 		$data = $this->db->query("SELECT * FROM base_sms_tur WHERE etat = 0")->result();
 		$this->maria = $this->load->database('maria_db', TRUE);
+		
 	
 		foreach ($data as $key => $value) {
 			// Vérifiez si le code_bv existe dans la table base_sms_mad
