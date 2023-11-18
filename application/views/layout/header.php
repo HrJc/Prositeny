@@ -63,7 +63,7 @@
                         <ion-icon name="receipt"></ion-icon>
                             <!-- <i class='fa fa-users'></i> -->
                         </span>
-                        <span class="title">Messages</span>
+                        <span class="title">Procès-verbal</span>
                     </a>
                 </li>
             <?php  } 
@@ -122,15 +122,15 @@
                         </a>
                     </li>
 
-                    <li>
+                    <!-- <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!- <i class='fa fa-users'></i> -
                             </span>
                             <span class="title">Messages</span>
                         </a>
-                    </li>
+                    </li> -->
     
                     <!-- <li>
                         <a href="<?php echo base_url(); ?>AdminCont/listeAnomalie">
@@ -152,15 +152,7 @@
                             <span class="title">Mandant</span>
                         </a>
                     </li> -->
-                    <li>
-                        <a href="<?php echo base_url(); ?>Utilisateurs/index">
-                            <span class="icon">
-                            <ion-icon name="person"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
-                            </span>
-                            <span class="title">Utilisateurs</span>
-                        </a>
-                    </li>
+                   
                     <?php } ?>
     
     
@@ -184,24 +176,42 @@
                             <span class="title">Résultat BV</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/viewMessage">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!- <i class='fa fa-users'></i> 
                             </span>
                             <span class="title">Bureau de votes</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
                                 <!-- <i class='fa fa-users'></i> -->
                             </span>
-                            <span class="title">Messages</span>
+                            <span class="title">Procès-verbal</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>Utilisateurs/index">
+                            <span class="icon">
+                            <ion-icon name="person"></ion-icon>
+                                <!-- <i class='fa fa-users'></i> -->
+                            </span>
+                            <span class="title">Utilisateurs</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
+                            <span class="icon">
+                            <ion-icon name="receipt"></ion-icon>
+                            <i class='fa fa-users'></i>
+                            </span>
+                            <span class="title">Messages</span>
+                        </a>
+                    </li> -->
                     <?php 
                     }
                     

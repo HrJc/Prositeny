@@ -1513,33 +1513,67 @@ public function croneetat()
 	public function updatebvsms()
 	{
 
-
-		       $datas = $this->db->query("select * from base_sms where CODE_BV =" . $_POST["bv"] ." ")->row();
+		//var_dump($_POST);die;
+		       $datas = $this->db->query("select * from base_resultat where CODE_BV =" . $_POST["bv"] ." ")->row();
 
 				if ($datas != null) {
 
 
-					$ty = $this->db->query("select * from base_sms where CODE_BV =" . $_POST["bv"] . " and voix13 = ".$_POST["siteny"]." and voix05 = ".$_POST["marc"]." and voix03 = ".$_POST["andry"]."  and total = ".$_POST["total"]."  ")->row();
+					$ty = $this->db->query("select * from base_resultat where CODE_BV =" . $_POST["bv"] . " and voix13 = ".$_POST["siteny"]." and voix05 = ".$_POST["marc"]." and voix03 = ".$_POST["andry"]."  and total = ".$_POST["total"]."  ")->row();			
 			
-			
-						if ($ty != null) {
+						if ($ty == null) {
+							$data = array();
+							$data["voix01"] = $_POST["tahina"];
+							$data["voix02"] = $_POST["hajo"];
+							$data["voix03"] = $_POST["andry"];
+							$data["voix04"] = $_POST["roland"];
+							$data["voix05"] = $_POST["marc"];
+							$data["voix06"] = $_POST["auguste"];
+							$data["voix07"] = $_POST["raobelina"];
+							$data["voix08"] = $_POST["brunelle"];
+							$data["voix09"] = $_POST["lalaina"];
+							$data["voix10"] = $_POST["hery"];
+							$data["voix11"] = $_POST["sendrison"];
+							$data["voix12"] = $_POST["jean"];
+							$data["voix13"] = $_POST["siteny"];
+							$data["fotsy"] = $_POST["fotsy"];
+							$data["maty"] = $_POST["maty"];
+							$data["total"] = $_POST["total"];
+							$data["etat"] = 3;
+							
+							$this->db
+							->where("CODE_BV", $_POST["bv"])
+							->update("base_resultat", $data);
+							
 							echo json_encode(array('id' => 1));
 						} else {
 							
-							$datas = $this->db->query("select * from base_sms where CODE_BV =" . $_POST["bv"] ." ")->row();
+							$datas = $this->db->query("select * from base_resultat where CODE_BV =" . $_POST["bv"] ." ")->row();
 
 							if ( $datas->voix03 == "" && $datas->voix05 == "" && $datas->voix13 == "" && $datas->total == "" ) {
 
 								$data = array();
+								$data["voix01"] = $_POST["tahina"];
+								$data["voix02"] = $_POST["hajo"];
 								$data["voix03"] = $_POST["andry"];
+								$data["voix04"] = $_POST["roland"];
 								$data["voix05"] = $_POST["marc"];
+								$data["voix06"] = $_POST["auguste"];
+					 			$data["voix07"] = $_POST["raobelina"];
+								$data["voix08"] = $_POST["brunelle"];
+								$data["voix09"] = $_POST["lalaina"];
+								$data["voix10"] = $_POST["hery"];
+								$data["voix11"] = $_POST["sendrison"];
+								$data["voix12"] = $_POST["jean"];
 								$data["voix13"] = $_POST["siteny"];
+								$data["fotsy"] = $_POST["fotsy"];
+								$data["maty"] = $_POST["maty"];
 								$data["total"] = $_POST["total"];
 								$data["etat"] = 3;
 								
 								$this->db
 								->where("CODE_BV", $_POST["bv"])
-								->update("base_sms", $data);
+								->update("base_resultat", $data);
 								
 								echo json_encode(array('id' => 1));
 
@@ -1566,25 +1600,35 @@ public function croneetat()
 
 				}
 
-				$this->cronesaisie();
-
-
+				// $this->cronesaisie();
 	}
+
 	public function miseajour()
 	{
 		        $data = [];
+				$data["voix01"] = $_POST["tahina"];
+				$data["voix02"] = $_POST["hajo"];
 				$data["voix03"] = $_POST["andry"];
+				$data["voix04"] = $_POST["roland"];
 				$data["voix05"] = $_POST["marc"];
+				$data["voix06"] = $_POST["auguste"];
+				$data["voix07"] = $_POST["raobelina"];
+				$data["voix08"] = $_POST["brunelle"];
+				$data["voix09"] = $_POST["lalaina"];
+				$data["voix10"] = $_POST["hery"];
+				$data["voix11"] = $_POST["sendrison"];
+				$data["voix12"] = $_POST["jean"];
 				$data["voix13"] = $_POST["siteny"];
+				$data["fotsy"] = $_POST["fotsy"];
+				$data["maty"] = $_POST["maty"];
 				$data["total"] = $_POST["total"];
 				$data["etat"] = 3;
 				
 				$this->db
 				->where("CODE_BV", $_POST["bv"])
-				->update("base_sms", $data);
+				->update("base_resultat", $data);
 				echo json_encode(array('id' => 1));
-				$this->cronesaisie();
-
+				// $this->cronesaisie();
 
 	}
 	
