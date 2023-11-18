@@ -415,7 +415,7 @@
 	function listeContratvote() {
 		var id = $("#bvFiltrevote").val();
 		$.ajax({
-			url: '<?php echo site_url('Utilisateurs/listerVote'); ?>',
+			url: '<?php echo site_url('Utilisateurs/listerVoteGlo'); ?>',
 			type: "POST",
 			data: {
                 id: id
