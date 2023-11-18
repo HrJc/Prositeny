@@ -432,7 +432,7 @@
 
 <div class="modal" id="modaladdExcelupdate" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg" role="document" style="width:550px">
-		<form class="docs-search-form row gx-1 align-items-center" id="formAddExcelUpdate">
+		<form class="docs-search-form row gx-1 align-items-center" >
 			<div class="modal-content" style='width:550px'>
 				<div class="modal-header">
 					<h5 class="modal-title">Importation fichier Excel</h5>
@@ -452,7 +452,7 @@
 					
 					<div class="col-12 mb-4">
 						
-						<input class="form-control" name="excel1" required type="file">
+						<input class="form-control" name="excel1" required type="file" id="filejsimport">
 					</div>
 
 				</div>

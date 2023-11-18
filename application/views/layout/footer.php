@@ -15,11 +15,13 @@
 <script src="<?php echo base_url() ?>assets/jc/js/bootstrap3-typeahead.min.js"></script>  
 <script src="<?php echo base_url() ?>assets/jc/js/chart.min.js"></script>
 <script src="<?php echo base_url() ?>assets/jc/js/main.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/app.js"></script> 
 <script src="<?php echo base_url(); ?>assets/js/chart/dist/echarts.js"></script>
 <script src="<?php echo base_url() ?>assets/jc/js/sweetalert.min.js"></script>
+<!-- use version 0.20.0 -->
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/app.js"></script> 
 <!-- <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
 
 </body>

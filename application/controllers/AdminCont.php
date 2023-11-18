@@ -888,31 +888,59 @@ public function sendsms2()
 			}
 
 
-/**********************************/
 
-public function croneetat()
+public function insertBV()
 	{
 		$select = '';
 
-		$data = $this->db->query("select * from basebrutesms where etat = 0 ")->result();
-		
-		foreach ($data as $key) {
-			
-			$value = [
-				"phone_number"=> $key->telephone,
-				"code_bv"=> $key->contentsms
-			];
+		foreach (json_decode($_POST["excelData"]) as $value) {
 
-			$dat = $this->db->select("*")->from("autorized_phone")->where("phone_number", $key->telephone)->where("code_bv", $key->contentsms)->get()->row();
+			if ($value->code_bv != null) {
 
-			if (!$dat) {
-				$this->db->insert("autorized_phone", $value);
+				$datas = $this->db->query("select * from base_sms where CODE_BV = ".$value->code_bv." ")->row();
+
+				if ($datas) {
+
+				    if ($datas->voix03 == $value->vaoix03 && $datas->voix05 == $value->vaoix05 && $datas->voix13 == $value->vaoix13 && $datas->voix13 == $value->vaoix13 ) {
+						
+						
+					}
+					else{
+
+						var_dump($value);	
+
+						/*$upd = array(
+							"etat" => 3,
+							"contact" => $value->telephone ,
+							"voix03" => $value->vaoix03 ,
+							"voix05" => $value->voix05 ,
+							"voix13" => $value->voix13 ,
+							"total" => $value->total 
+						);
+						$this->db->where("CODE_BV", $value->code_bv )->update("base_sms", $upd);*/
+					
+					}
+
+				}else{
+
+					/*$anom = array(
+						"contact"=> $value->telephone,
+						"id_brute"=> null,
+						"anomalie"=> "Code BV inexistante ".$value->code_bv." "
+					);
+					$this->db->insert("anomalie_sms", $anom);*/
+
+				}
+
+
 			}
-			$this->db->query("update basebrutesms set etat = 1 where id = ".$key->id." ");
-			
+		
+
 		}
 
-	       $this->cronereponse();
+		$this->cronesaisie();
+
+	 
 	}
 
 
