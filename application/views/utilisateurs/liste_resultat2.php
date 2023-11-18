@@ -33,6 +33,10 @@
 		height: 150px; /* ajustez la hauteur selon vos besoins */
 	}
 
+	.text-muted {
+		color: #000000 !important;
+	}
+
 </style>
 <label style="margin: 20px;"><strong>RESULTAT DE L'ELECTION PRESIDENTIELLE 2023</strong></label>
 <br>
@@ -52,7 +56,7 @@
 <br>
 
 <div class="row" style="margin:10px">
-<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 	<div class="card">
 	<h5 class="card-header">SMS</h5>
 	<ul class="list-unstyled card-body mb-0 pb-0">
@@ -60,14 +64,16 @@
 		<li><strong>Total : <span class="totalsum"></span></strong></li>
 		<li><strong>Voix 13 : <span class="total13"></span></strong></li>
 		<li><strong>Voix 05 : <span class="total5"></span></strong></li>
-		<li><strong>Voix 03 : <span class="total3"></span></strong></li>		
+		<li><strong>Voix 03 : <span class="total3"></span></strong></li>	
+		<br>
+		<br>
 	</ul>
 	</div>
 </div>
-<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 	<div class="card">
 	<h5 class="card-header">RESULTAT</h5>
-	<ul class="list-unstyled card-body mb-0 pb-0">
+	<ul class="list-unstyled card-body mb-0 pb-0" style="background-color: #f6ff09">
 		<li class="media mb-3">
 		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/13.jpg" />
 		<div class="media-body align-self-center">
@@ -77,7 +83,15 @@
 			<div class="progress-bar" id="sum13" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		</div>
-		</li>
+		</li>		
+	  </ul>
+	</div>
+</div>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	<div class="card">
+	<h5 class="card-header">RESULTAT</h5>
+	<ul class="list-unstyled card-body mb-0 pb-0" style="background-color: #ff7d00;">
+		
 		<li class="media mb-3">
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/3.jpg" />
 		  <div class="media-body align-self-center">
@@ -87,7 +101,17 @@
 			  <div class="progress-bar" id="sum3" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
-		</li>		
+		</li>	
+		
+		
+	  </ul>
+	</div>
+</div>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	<div class="card">
+	<h5 class="card-header">RESULTAT</h5>
+	<ul class="list-unstyled card-body mb-0 pb-0" style="background-color: #ff0404">
+		
 		<li class="media mb-3">
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/5.jpg" />
 		  <div class="media-body align-self-center">
@@ -101,9 +125,6 @@
 		
 	  </ul>
 	</div>
-</div>
-<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-
 </div>
 </div>
 

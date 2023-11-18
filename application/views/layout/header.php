@@ -159,6 +159,24 @@
     
                     <?php if ($type == "Administrateur") { ?>
                     <li>
+                        <a href="<?php echo base_url(); ?>Utilisateurs/resultat4">
+                            <span class="icon">
+                            <ion-icon name="receipt"></ion-icon>
+                                <!-- <i class='fa fa-users'></i> -->
+                            </span>
+                            <span class="title">Résultat Global</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>Utilisateurs/resultat3">
+                            <span class="icon">
+                            <ion-icon name="receipt"></ion-icon>
+                                <!-- <i class='fa fa-users'></i> -->
+                            </span>
+                            <span class="title">Résultat / PV</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url(); ?>AdminCont/resultat">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
@@ -173,7 +191,7 @@
                             <ion-icon name="receipt"></ion-icon>
                                 <!-- <i class='fa fa-users'></i> -->
                             </span>
-                            <span class="title">Résultat BV</span>
+                            <span class="title">Résultat SMS / BV</span>
                         </a>
                     </li>
                     <!-- <li>
