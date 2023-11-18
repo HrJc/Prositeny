@@ -1249,6 +1249,54 @@ class Utilisateurs extends CI_Controller {
 	
 		echo ('okok');
 	}
+
+	public function creerRepertoiresDepuisBD() {
+		$Path = FCPATH . "uploads/";
+	
+		// Exécutez la requête SQL
+		$query = $this->db->query("SELECT rg.CODE_REGION, rg.LIBELLE_REGION, ds.CODE_DISTRICT, ds.LIBELLE_DISTRICT, cm.CODE_COMMUNE, cm.LIBELLE_COMMUNE
+			FROM bv b, cv c, fokontany fk, commune cm, district ds, region rg, base_sms_tur ba  
+			WHERE b.CODE_CV = c.CODE_CV 
+			AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE 
+			AND ds.CODE_DISTRICT = cm.CODE_DISTRICT 
+			AND rg.CODE_REGION = ds.CODE_REGION");
+	
+		$results = $query->result(); // Récupérez les résultats
+	
+		foreach ($results as $row) {
+			$codeRegion = $row->CODE_REGION;
+			$libelleRegion = $row->LIBELLE_REGION;
+			$codeDistrict = $row->CODE_DISTRICT;
+			$libelleDistrict = $row->LIBELLE_DISTRICT;
+			$codeCommune = $row->CODE_COMMUNE;
+			$libelleCommune = $row->LIBELLE_COMMUNE;
+	
+			// Nom du répertoire avec le code et le libellé (format : code-libelle)
+			$regionDirectory = $Path . $codeRegion . '-' . strtolower(str_replace(' ', '-', $libelleRegion));
+	
+			// Création du répertoire pour la région
+			if (!is_dir($regionDirectory)) {
+				mkdir($regionDirectory, 0777, true);
+			}
+	
+			// Nom du répertoire du district avec le code et le libellé
+			$districtDirectory = $regionDirectory . '/' . $codeDistrict . '-' . strtolower(str_replace(' ', '-', $libelleDistrict));
+	
+			// Création du répertoire pour le district
+			if (!is_dir($districtDirectory)) {
+				mkdir($districtDirectory, 0777, true);
+			}
+	
+			// Nom du répertoire de la commune avec le code et le libellé
+			$communeDirectory = $districtDirectory . '/' . $codeCommune . '-' . strtolower(str_replace(' ', '-', $libelleCommune));
+	
+			// Création du répertoire pour la commune
+			if (!is_dir($communeDirectory)) {
+				mkdir($communeDirectory, 0777, true);
+			}
+		}
+	}
 	
 }
 
