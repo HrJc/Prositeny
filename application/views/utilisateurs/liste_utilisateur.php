@@ -30,7 +30,7 @@
 				<tr>
 					<th style="background-color:#4237b3; color:white" class="text-center">Nom et Prénoms</th>
 					<th style="background-color:#4237b3; color:white" class="text-center">Email</th>
-					<th style="background-color:#4237b3; color:white" class="text-center">Région</th>
+					<!-- <th style="background-color:#4237b3; color:white" class="text-center">Région</th> -->
 				</tr>
 			</thead>
 			<tbody>

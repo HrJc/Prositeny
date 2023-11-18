@@ -161,29 +161,29 @@ class Utilisateurs extends CI_Controller {
 				$region = explode('_', $value['id_region']);
 				$libs = '';
 
-				if (count($region) > 1) {
-					$count = 0;
-					foreach ($region as $key => $val) {
-						$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $val)->row();
-						$lib = $getLib->LIBELLE_REGION;
-						$libs .= $lib;
+				// if (count($region) > 1) {
+				// 	$count = 0;
+				// 	foreach ($region as $key => $val) {
+				// 		$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $val)->row();
+				// 		$lib = $getLib->LIBELLE_REGION;
+				// 		$libs .= $lib;
 						
-						if ($count < count($region) - 1) {
-							$libs .= ', ';  // Ajoute une virgule sauf à la dernière itération
-						}
+				// 		if ($count < count($region) - 1) {
+				// 			$libs .= ', ';  // Ajoute une virgule sauf à la dernière itération
+				// 		}
 						
-						$count++;
-					}
-				} else {
-					// S'il n'y a qu'une seule région, assignez simplement le libellé à $libs
-					$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $region[0])->row();
-					$libs = $getLib->LIBELLE_REGION;
-				}
+				// 		$count++;
+				// 	}
+				// } else {
+				// 	// S'il n'y a qu'une seule région, assignez simplement le libellé à $libs
+				// 	$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $region[0])->row();
+				// 	$libs = $getLib->LIBELLE_REGION;
+				// }
 
 				$data[]  = [
 								$value['nom']. " ".$value['prenom'],
 								$value['email'],
-								$libs
+								// $libs
 						   ];
 			}
 		}
