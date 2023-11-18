@@ -1249,7 +1249,7 @@ class Utilisateurs extends CI_Controller {
 		if ($_SESSION['type'] == "Administrateur") {
 			$faritra = $this->db->query("select * from faritany ")->result();
 			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
-			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_sms_tur ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
 			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV AND ba.etat = 3")->result();
 		} else {
 			$faritra = $this->db->query("select r.CODE_REGION , r.LIBELLE_REGION , f.CODE_FARITANY , LIBELLE_FARITANY from faritany f  join region r on r.CODE_FARITANY = f.CODE_FARITANY WHERE r.CODE_REGION in (  " . implode(",", $data['tabRegion']) . " ) group by r.CODE_FARITANY ")->result();
