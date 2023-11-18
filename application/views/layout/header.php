@@ -57,6 +57,15 @@
                         <span class="title">Résultat BV</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
+                        <span class="icon">
+                        <ion-icon name="receipt"></ion-icon>
+                            <!-- <i class='fa fa-users'></i> -->
+                        </span>
+                        <span class="title">Messages</span>
+                    </a>
+                </li>
             <?php  } 
             else {
                 if (isset($district)) { ?>
@@ -110,6 +119,16 @@
                                 <!-- <i class='fa fa-users'></i> -->
                             </span>
                             <span class="title">Délégué</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
+                            <span class="icon">
+                            <ion-icon name="receipt"></ion-icon>
+                                <!-- <i class='fa fa-users'></i> -->
+                            </span>
+                            <span class="title">Messages</span>
                         </a>
                     </li>
     
@@ -210,12 +229,17 @@
 
                 <div style="display: inline-block">
                 <?php
-                    if ($type !== "Administrateur") {
-                        $regionn = $region[0]->LIBELLE_REGION;
+                    if ($type !== "Administrateur") {                        
                         if (isset($district)) {
                             $regionn = 'DISTRICT - '.$district[0]->LIBELLE_DISTRICT;
+                        }else if($type == "Invite"){
+                            $regionn = "INVITE";
+                        }else if($type == "Administrateur"){
+                            
+                        }else {
+                            $regionn = $region[0]->LIBELLE_REGION;
                         }
-                    } else {
+                    }else {
                         $regionn = "ADMINISTRATEUR";
                     }
                     ?>

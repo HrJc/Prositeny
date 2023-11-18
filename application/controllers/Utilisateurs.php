@@ -1216,6 +1216,87 @@ class Utilisateurs extends CI_Controller {
 		$this->load->view('utilisateurs/liste_resultat2', $data);
 		$this->load->view('layout/footer');
 	}
+
+	public function cronSMS() {
+		$data = $this->db->query("SELECT * FROM base_sms_tur WHERE etat = 0")->result();
+		$this->maria = $this->load->database('maria_db', TRUE);
+		
+	
+		foreach ($data as $key => $value) {
+			// Vérifiez si le code_bv existe dans la table base_sms_mad
+			$existingCodeBV = $this->maria->get_where('base_sms_mad', array('code_bv' => $value->CODE_BV))->row();
+	
+			if (!$existingCodeBV) {
+				// Le code_bv n'existe pas, on peut insérer les données
+				$dateMadagascar = new DateTime('now', new DateTimeZone('Indian/Antananarivo'));
+				$dateFormatted = $dateMadagascar->format('Y-m-d H:i:s');
+	
+				$donnee = array(
+					'code_bv' => $value->CODE_BV,
+					'voix13' => $value->voix13,
+					'voix03' => $value->voix03,
+					'voix05' => $value->voix05,
+					'PresentVote' => $value->total,
+					'date' => $dateFormatted // Utilisez la date ajustée pour Madagascar
+				);
+	
+				$this->maria->insert('base_sms_mad', $donnee);
+	
+				$sql = "UPDATE base_sms_tur SET etat = 1 WHERE CODE_BV=" . $value->CODE_BV;
+				$this->db->query($sql);
+			}
+		}
+	
+		echo ('okok');
+	}
+
+	public function creerRepertoiresDepuisBD() {
+		$Path = FCPATH . "uploads/";
+	
+		// Exécutez la requête SQL
+		$query = $this->db->query("SELECT rg.CODE_REGION, rg.LIBELLE_REGION, ds.CODE_DISTRICT, ds.LIBELLE_DISTRICT, cm.CODE_COMMUNE, cm.LIBELLE_COMMUNE
+			FROM bv b, cv c, fokontany fk, commune cm, district ds, region rg, base_sms_tur ba  
+			WHERE b.CODE_CV = c.CODE_CV 
+			AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE 
+			AND ds.CODE_DISTRICT = cm.CODE_DISTRICT 
+			AND rg.CODE_REGION = ds.CODE_REGION");
+	
+		$results = $query->result(); // Récupérez les résultats
+	
+		foreach ($results as $row) {
+			$codeRegion = $row->CODE_REGION;
+			$libelleRegion = $row->LIBELLE_REGION;
+			$codeDistrict = $row->CODE_DISTRICT;
+			$libelleDistrict = $row->LIBELLE_DISTRICT;
+			$codeCommune = $row->CODE_COMMUNE;
+			$libelleCommune = $row->LIBELLE_COMMUNE;
+	
+			// Nom du répertoire avec le code et le libellé (format : code-libelle)
+			$regionDirectory = $Path . $codeRegion . '-' . strtolower(str_replace(' ', '-', $libelleRegion));
+	
+			// Création du répertoire pour la région
+			if (!is_dir($regionDirectory)) {
+				mkdir($regionDirectory, 0777, true);
+			}
+	
+			// Nom du répertoire du district avec le code et le libellé
+			$districtDirectory = $regionDirectory . '/' . $codeDistrict . '-' . strtolower(str_replace(' ', '-', $libelleDistrict));
+	
+			// Création du répertoire pour le district
+			if (!is_dir($districtDirectory)) {
+				mkdir($districtDirectory, 0777, true);
+			}
+	
+			// Nom du répertoire de la commune avec le code et le libellé
+			$communeDirectory = $districtDirectory . '/' . $codeCommune . '-' . strtolower(str_replace(' ', '-', $libelleCommune));
+	
+			// Création du répertoire pour la commune
+			if (!is_dir($communeDirectory)) {
+				mkdir($communeDirectory, 0777, true);
+			}
+		}
+	}
 	
 }
 

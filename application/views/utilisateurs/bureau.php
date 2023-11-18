@@ -58,10 +58,11 @@
 </div>
 
 <input type="hidden" name="" id="id-anomalie">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 <div class="modal" id="modaladdExcel" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg" role="document" style="width:550px">
-		<div class="modal-content" style='width:550px'>
+	<div class="modal-dialog modal-lg" role="document" style="width:346px">
+		<div class="modal-content" style='width:346px'>
 			<div class="modal-header">
 				<h5 class="modal-title">Validation</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -69,7 +70,7 @@
 				</button>
 			</div>
 			
-			<div class="modal-body" style='width:550px' id="update">	
+			<div class="modal-body" style='width:346px' id="update">	
 			
 			<form method="POST" id="updatebvsms">
 				<div class="row">
@@ -113,6 +114,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 
