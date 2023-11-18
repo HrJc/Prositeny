@@ -57,6 +57,15 @@
                         <span class="title">Résultat BV</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
+                        <span class="icon">
+                        <ion-icon name="receipt"></ion-icon>
+                            <!-- <i class='fa fa-users'></i> -->
+                        </span>
+                        <span class="title">Messages</span>
+                    </a>
+                </li>
             <?php  } 
             else {
                 if (isset($district)) { ?>
