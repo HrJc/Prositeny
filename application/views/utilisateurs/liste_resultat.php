@@ -321,7 +321,11 @@
 		// $('#table-liste-vote_wrapper').find('#table-liste-vote_filter').css('display', 'none');
 	}
 
+	setInterval(listeContratvote, 1000);
+
 	jQuery(document).ready(function ($) {
+
+	
 
 		listeContratvote();
 
