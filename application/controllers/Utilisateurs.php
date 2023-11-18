@@ -1187,6 +1187,26 @@ class Utilisateurs extends CI_Controller {
 		echo $select;
 	}
 
+	public function chargeBVS2()
+	{
+		$select = '';
+
+		$data = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+		FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+		AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND 
+		cm.CODE_COMMUNE = " . $_POST["id"] . "")->result();
+		$i = 0;
+		foreach ($data as $key) {
+			$sel = ($i == 0) ? "selected" : "";
+			$select .= "<option value='" . $key->CODE_BV . "' >" . $key->LIBELLE_BV . "</option>";
+			$i++;
+		}
+
+
+
+		echo $select;
+	}
+
 	public function resultat2()
 	{
 		$this->testerSession();
@@ -1230,12 +1250,12 @@ class Utilisateurs extends CI_Controller {
 			$faritra = $this->db->query("select * from faritany ")->result();
 			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
 			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_sms_tur ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV")->result();
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV AND ba.etat = 3")->result();
 		} else {
 			$faritra = $this->db->query("select r.CODE_REGION , r.LIBELLE_REGION , f.CODE_FARITANY , LIBELLE_FARITANY from faritany f  join region r on r.CODE_FARITANY = f.CODE_FARITANY WHERE r.CODE_REGION in (  " . implode(",", $data['tabRegion']) . " ) group by r.CODE_FARITANY ")->result();
 			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
-			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_sms_tur ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV")->result();
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV AND ba.etat = 3")->result();
 		}
 
 		//var_dump($region);die;
@@ -1259,7 +1279,7 @@ class Utilisateurs extends CI_Controller {
 		if ($_SESSION['type'] == "Administrateur") {
 			$faritra = $this->db->query("select * from faritany ")->result();
 			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
-			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_sms_tur ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
 			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV")->result();
 		} else {
 			$faritra = $this->db->query("select r.CODE_REGION , r.LIBELLE_REGION , f.CODE_FARITANY , LIBELLE_FARITANY from faritany f  join region r on r.CODE_FARITANY = f.CODE_FARITANY WHERE r.CODE_REGION in (  " . implode(",", $data['tabRegion']) . " ) group by r.CODE_FARITANY ")->result();
