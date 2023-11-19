@@ -896,7 +896,6 @@ public function sendsms2()
 public function insertBV()
 	{
 		$select = '';
-
 				
 				//die;
 		foreach (json_decode($_POST["excelData"]) as $value) {
@@ -908,7 +907,7 @@ public function insertBV()
 				$voix05 = isset($value->voix05 ) ? $value->voix05 :0;
 				$voix13 = isset($value->voix13 ) ? $value->voix13 :0;
 				$total = isset($value->total) ? ( $value->total == 0 ? ($voix03 + $voix05 + $voix13 ) : $value->total ) : 0;
-				var_dump($total);
+				
 				$datas = $this->db->query("select * from base_sms where CODE_BV = ".$value->code_bv." ")->row();
 
 					if ($datas) {
@@ -938,7 +937,7 @@ public function insertBV()
 						$anom = array(
 							"contact"=> $telephone,
 							"id_brute"=> null,
-							"anomalie"=> "Code BV inexistante ".$value->code_bv." "
+							"anomalie"=> "Code BV inexistante depuis sms".$value->code_bv." "
 						);
 						$this->db->insert("anomalie_sms", $anom);
 
@@ -949,10 +948,56 @@ public function insertBV()
 		}
 
 		
-		$this->cronesaisie();
+		//$this->cronesaisie();
 
 		echo "nico" ;
 		
+
+
+	 
+	}
+public function insertBVintoResultat()
+	{
+		
+		$dat = $this->db->query("select * from excel_result")->result();
+
+		foreach ($dat as $value) {
+
+			$datas = $this->db->query("select * from base_resultat where CODE_BV = ".$value->code_bv." ")->row();
+
+				if ($datas) {
+
+				$array = array(
+				"voix01" => $value->voix01,
+				"voix02" => $value->voix02,
+				"voix03" => $value->voix03,
+				"voix04" => $value->voix04,
+				"voix05" => $value->voix05,
+				"voix06" => $value->voix06,
+				"voix07" => $value->voix07,
+				"voix08" => $value->voix08,
+				"voix09" => $value->voix09,
+				"voix10" => $value->voix10,
+				"voix11" => $value->voix11,
+				"voix12" => $value->voix12,
+				"voix13" => $value->voix13,
+				"maty" => $value->maty,
+				"fotsy" => $value->fotsy,
+				"total" => $value->total
+				);
+				$this->db->where()->update("base_resultat", $array);
+
+				}else{
+
+					$anom = array(
+						"contact"=> '',
+						"id_brute"=> null,
+						"anomalie"=> "Code BV inexistante depuis PV".$value->code_bv." "
+					);
+				$this->db->insert("anomalie_sms", $anom);
+
+		}
+		}
 
 
 	 
