@@ -1466,8 +1466,8 @@ class Utilisateurs extends CI_Controller {
 				$somme11 += 	$value->voix11;				
 				$somme12 += 	$value->voix12;				
 				$somme13 += $value->voix13;			
-				$somme += $value->iaby;			
-				$votant += $value->total;			
+				$somme += $value->total;			
+				$votant += $value->iaby;			
 				$blancNul += $value->fotsy;			
 				$blancNul += $value->maty;			
 				$count ++;
@@ -1537,6 +1537,7 @@ class Utilisateurs extends CI_Controller {
 					'totalsum' => $somme,
 					'blanc' => $blancNul,
 					'count' => $count,
+					'votant' => $votant,
 				);	
 			}
 		
@@ -1674,8 +1675,8 @@ class Utilisateurs extends CI_Controller {
 				$somme11 += 	$value->voix11;				
 				$somme12 += 	$value->voix12;				
 				$somme13 += $value->voix13;	
-				$somme += $value->iaby;			
-				$votant += $value->total;			
+				$somme += $value->total;			
+				$votant += $value->iaby;			
 				$blancNul += $value->fotsy;			
 				$blancNul += $value->maty;			
 				$count ++;
