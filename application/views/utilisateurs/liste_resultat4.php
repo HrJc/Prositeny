@@ -59,10 +59,10 @@
 		<select data-live-search=true id="communeFiltrevote" title="District" required name="ds">
 			<option value="tous" selected>Tous</option>
 		</select>&emsp;
-		<!-- <label><strong>Bureau de vote :</strong></label> -->
-		<!-- <select data-live-search=true id="bvFiltrevote" title="District" required name="ds">
-			<option value="tous" selected>Tous</option> -->
-		<!-- </select>&emsp; -->
+		<label><strong>Bureau de vote :</strong></label> 
+		<select data-live-search=true id="bvFiltrevote" title="District" required name="ds">
+			<option value="tous" selected>Tous</option> 
+		</select>&emsp;
 	</div>
 	
 </div>
