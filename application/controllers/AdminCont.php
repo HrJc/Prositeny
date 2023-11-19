@@ -966,8 +966,9 @@ public function insertBVintoResultat()
 		foreach ($dat as $value) {
 			
 			
-			$datas = $this->db->query("select * from base_resultat where CODE_BV = ".$value->code_bv." ")->row();
 			if ($value->code_bv != "" || $value->code_bv != null) {
+				
+				$datas = $this->db->query("select * from base_resultat where CODE_BV = ".$value->code_bv." ")->row();
 				
 				if ($datas) {
 					//var_dump($value);
