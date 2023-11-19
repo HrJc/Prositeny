@@ -1449,6 +1449,7 @@ class Utilisateurs extends CI_Controller {
 		$somme12 = 0;
 		$somme13 = 0;
 		$blancNul = 0;
+		$votant = 0;
 		if (!empty($datauser)) {
 			foreach ($datauser as $value)
 			{		
@@ -1465,7 +1466,8 @@ class Utilisateurs extends CI_Controller {
 				$somme11 += 	$value->voix11;				
 				$somme12 += 	$value->voix12;				
 				$somme13 += $value->voix13;			
-				$somme += $value->total;			
+				$somme += $value->iaby;			
+				$votant += $value->total;			
 				$blancNul += $value->fotsy;			
 				$blancNul += $value->maty;			
 				$count ++;
@@ -1499,6 +1501,7 @@ class Utilisateurs extends CI_Controller {
 					'total12' => $somme12,
 					'total13' => $somme13,
 					'totalsum' => $somme,
+					'votant' => $votant,
 					'blanc' => $blancNul,
 					'count' => $count,
 				);	
@@ -1573,6 +1576,7 @@ class Utilisateurs extends CI_Controller {
 				'total12' => $somme12,
 				'total13' => $somme13,
 				'totalsum' => $somme,
+				'votant' => $votant,
 				'blanc' => $blancNul,
 				'count' => $count,
 			);	
@@ -1653,6 +1657,7 @@ class Utilisateurs extends CI_Controller {
 		$somme12 = 0;
 		$somme13 = 0;
 		$blancNul = 0;
+		$votant = 0;
 		if (!empty($datauser)) {
 			foreach ($datauser as $value)
 			{		
@@ -1668,8 +1673,9 @@ class Utilisateurs extends CI_Controller {
 				$somme10 += 	$value->voix10;				
 				$somme11 += 	$value->voix11;				
 				$somme12 += 	$value->voix12;				
-				$somme13 += $value->voix13;			
-				$somme += $value->total;			
+				$somme13 += $value->voix13;	
+				$somme += $value->iaby;			
+				$votant += $value->total;			
 				$blancNul += $value->fotsy;			
 				$blancNul += $value->maty;			
 				$count ++;
@@ -1703,6 +1709,7 @@ class Utilisateurs extends CI_Controller {
 					'total12' => $somme12,
 					'total13' => $somme13,
 					'totalsum' => $somme,
+					'votant' => $votant,
 					'blanc' => $blancNul,
 					'count' => $count,
 				);	
@@ -1736,6 +1743,7 @@ class Utilisateurs extends CI_Controller {
 					'total12' => $somme12,
 					'total13' => $somme13,
 					'totalsum' => $somme,
+					'votant' => $votant,
 					'blanc' => $blancNul,
 					'count' => $count,
 				);	
@@ -1777,6 +1785,7 @@ class Utilisateurs extends CI_Controller {
 				'total12' => $somme12,
 				'total13' => $somme13,
 				'totalsum' => $somme,
+				'votant' => $votant,
 				'blanc' => $blancNul,
 				'count' => $count,
 			);	

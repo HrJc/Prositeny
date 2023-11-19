@@ -49,7 +49,7 @@
 		<h5 class="card-header"></h5>
 			<ul class="list-unstyled card-body mb-0 pb-0">
 				<li><strong>TOTAL BV : <span class="totalBV"></span></strong></li>
-				<li><strong>Votants : <span class="totalsum"></span></strong></li>
+				<li><strong>Votants : <span class="votant"></span></strong></li>
 				<li><strong>Blancs et Nuls : <span class="blanc"></span></strong></li>
 			</ul>
 		</div>
@@ -58,8 +58,7 @@
 		<div class="card">
 		<h5 class="card-header"></h5>
 			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>Suffrages exprimés: : <span class=""></span></strong></li>
-				<li><strong>Taux de participation : <span class=""></span></strong></li>
+				<li><strong>Suffrages exprimés: : <span class="totalsum"></span></strong></li>
 				<li><strong>Voix 01 : <span class="total1"></span></strong></li>
 			</ul>
 		</div>
@@ -526,6 +525,7 @@
 			dataType : "JSON",
 			success: function (data) {
 				console.log(data);
+				$('.votant').text(data.resultat.votant);
 				$('.totalsum').text(data.resultat.totalsum);
 				$('.totalBV').text(data.resultat.count);
 				$('.blanc').text(data.resultat.blanc);
