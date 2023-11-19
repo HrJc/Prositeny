@@ -1389,7 +1389,6 @@ class Utilisateurs extends CI_Controller {
 
 		if ($rg == "tous" && $ds == "tous" && $cm == "tous") {
 			$datauser = $this->db->query("SELECT * FROM base_resultat where etat = 3")->result();
-			var_dump($datauser);die;
 		}else if ( $rg <> "tous" && $ds == "tous" && $cm == "tous") {
 			$datauser = $this->db->query("SELECT b.*
 			FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
