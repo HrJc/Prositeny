@@ -40,6 +40,32 @@
 </style>
 <label style="margin: 20px;font-size:28px"><strong>RESULTAT PROVISOIRE DE L'ELECTION PRESIDENTIELLE DU 16 NOVEMBRE 2023</strong></label>
 <br>
+
+<br>
+<div class="row" style="margin:10px">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<label><strong>Région :</strong></label>
+		<select data-live-search="true" name="regionFiltrevote" id="regionFiltrevote">
+			<option value="tous" selected>Tous</option>
+			<?php foreach ($region as $key => $value) { ?>
+				<option value="<?php echo $value->CODE_REGION ?>"><?php echo  $value->LIBELLE_REGION ?></option>
+			<?php } ?>
+		</select>
+		<label><strong>District :</strong></label>
+		<select data-live-search=true id="districtFiltrevote" title="District" required name="ds">
+			<option value="tous" selected>Tous</option>
+		</select>&emsp;
+		<label><strong>commnune :</strong></label>
+		<select data-live-search=true id="communeFiltrevote" title="District" required name="ds">
+			<option value="tous" selected>Tous</option>
+		</select>&emsp;
+		<!-- <label><strong>Bureau de vote :</strong></label> -->
+		<!-- <select data-live-search=true id="bvFiltrevote" title="District" required name="ds">
+			<option value="tous" selected>Tous</option> -->
+		<!-- </select>&emsp; -->
+	</div>
+	
+</div>
 <!-- <div class="row" style="margin:10px">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
 		<label><strong>Bureau de vote :</strong></label>
@@ -266,18 +292,22 @@
 
 	$("#regionFiltrevote").on('change', function() {
         choixRegionFiltre1();
+		listeContratvote();
     });
-
+	
     $("#districtFiltrevote").on('change', function() {
-        choixCommunes();
+		choixCommunes();
+		listeContratvote();
     });
 	
     $("#communeFiltrevote").on('change', function() {
-        choixBVs();
+		choixBVs();
+		listeContratvote();
     });
-
+	
     $("#bvFiltrevote").on('change', function() {
-        listeContratvote();
+		listeContratvote();
+		listeContratvote();
     });
 
     function choixRegionFiltre1() {
@@ -428,12 +458,18 @@
 	// 	}
 	// }
 	function listeContratvote() {
-		var id = $("#bvFiltrevote").val();
+		var region = $("#regionFiltrevote").val();
+		var district = $("#districtFiltrevote").val();
+		var commune = $("#communeFiltrevote").val();
+		var bv = $("#bvFiltrevote").val();
 		$.ajax({
 			url: '<?php echo site_url('Utilisateurs/listerVoteGlo'); ?>',
 			type: "POST",
 			data: {
-                id: id
+                region: region,
+                district: district,
+                commune: commune,
+                bv: bv,
             },
 			dataType : "JSON",
 			success: function (data) {
@@ -459,7 +495,7 @@
 		// $('#table-liste-vote_wrapper').find('#table-liste-vote_filter').css('display', 'none');
 	}
 
-	setInterval(listeContratvote, 1000);
+	// setInterval(listeContratvote, 10000);
 
 	jQuery(document).ready(function ($) {
 

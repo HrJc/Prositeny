@@ -740,6 +740,7 @@ class Utilisateurs extends CI_Controller {
 		$select = "";
 		$data = $this->db->query("select * from district where CODE_REGION = " . $_POST["id"] . " ")->result();
 		$i = 0;
+		$select .= "<option value='tous' selected >tous</option>";
 		foreach ($data as $key) {
 
 			$select .= "<option value='" . $key->CODE_DISTRICT . "' >" . $key->LIBELLE_DISTRICT . "</option>";
@@ -1278,9 +1279,10 @@ class Utilisateurs extends CI_Controller {
 		$regions = $this->db->query("select * from region")->result();
 		if ($_SESSION['type'] == "Administrateur") {
 			$faritra = $this->db->query("select * from faritany ")->result();
-			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+			$region = $this->db->query("SELECT rg.CODE_REGION, rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
 			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV")->result();
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV group by rg.CODE_REGION")->result();
+			
 		} else {
 			$faritra = $this->db->query("select r.CODE_REGION , r.LIBELLE_REGION , f.CODE_FARITANY , LIBELLE_FARITANY from faritany f  join region r on r.CODE_FARITANY = f.CODE_FARITANY WHERE r.CODE_REGION in (  " . implode(",", $data['tabRegion']) . " ) group by r.CODE_FARITANY ")->result();
 			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
@@ -1380,13 +1382,43 @@ class Utilisateurs extends CI_Controller {
 
 	public function listerVoteGlo()
 	{
-		$id = $this->input->post('id'); 
+		$rg = $this->input->post("region");
+		$ds = $this->input->post("district");
+		$cm = $this->input->post('commune'); 
+		$bv = $this->input->post('bv'); 
 
-		if ($id == 'tous' || $id == '') {
-			$datauser = $this->db->query("SELECT * FROM base_resultat")->result();
+		if ($bv <> "tous") {
+			$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND v.CODE_CV = ".$bv." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
 		}else {
-			$datauser = $this->db->query("SELECT * FROM base_resultat where CODE_BV = ".$id."")->result();
+			if ($rg == "tous" && $ds == "tous" && $cm == "tous") {
+				$datauser = $this->db->query("SELECT * FROM base_resultat where etat = 3")->result();
+			}else if ( $rg <> "tous" && $ds == "tous" && $cm == "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ( $rg <> "tous" && $ds == "tous" && $cm <> "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ($rg <> "tous" && $ds <> "tous" && $cm == "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ($rg <> "tous" && $ds <> "tous" && $cm == "") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ($rg <> "tous" && $ds <> "tous" && $cm <> "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND cm.CODE_COMMUNE = ".$cm." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else{
+				$datauser = $this->db->query("SELECT * FROM base_resultat where CODE_BV = ".$bv."")->result();
+			}
 		}
+
 
 		$draw = intval($this->input->get("draw"));
 		$result = array();
@@ -1498,12 +1530,32 @@ class Utilisateurs extends CI_Controller {
 			echo json_encode($result);
 		}else {
 			$resultat = array(
-				'sum3' => 0 . '%',
-				'sum5' => 0 . '%',
-				'sum13' => 0 . '%',
-				'total13' => $somme13,
+				'sum1' => '0%',
+				'sum2' => '0%',
+				'sum3' => '0%',
+				'sum4' => '0%',
+				'sum5' => '0%',
+				'sum6' => '0%',
+				'sum7' => '0%',
+				'sum8' => '0%',
+				'sum9' => '0%',
+				'sum10' => '0%',
+				'sum11' => '0%',
+				'sum12' => '0%',
+				'sum13' => '0%',
+				'total1' => $somme1,
+				'total2' => $somme2,
 				'total3' => $somme3,
+				'total4' => $somme4,
 				'total5' => $somme5,
+				'total6' => $somme6,
+				'total7' => $somme7,
+				'total8' => $somme8,
+				'total9' => $somme9,
+				'total10' => $somme10,
+				'total11' => $somme11,
+				'total12' => $somme12,
+				'total13' => $somme13,
 				'totalsum' => $somme,
 				'count' => $count,
 			);	
