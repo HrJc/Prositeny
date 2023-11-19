@@ -1387,31 +1387,38 @@ class Utilisateurs extends CI_Controller {
 		$cm = $this->input->post('commune'); 
 		$bv = $this->input->post('bv'); 
 
-		if ($rg == "tous" && $ds == "tous" && $cm == "tous") {
-			$datauser = $this->db->query("SELECT * FROM base_resultat where etat = 3")->result();
-		}else if ( $rg <> "tous" && $ds == "tous" && $cm == "tous") {
+		if ($bv <> "tous") {
 			$datauser = $this->db->query("SELECT b.*
-			FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
-		}else if ( $rg <> "tous" && $ds == "tous" && $cm <> "tous") {
-			$datauser = $this->db->query("SELECT b.*
-			FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
-		}else if ($rg <> "tous" && $ds <> "tous" && $cm == "tous") {
-			$datauser = $this->db->query("SELECT b.*
-			FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
-		}else if ($rg <> "tous" && $ds <> "tous" && $cm == "") {
-			$datauser = $this->db->query("SELECT b.*
-			FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
-		}else if ($rg <> "tous" && $ds <> "tous" && $cm <> "tous") {
-			$datauser = $this->db->query("SELECT b.*
-			FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
-			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND cm.CODE_COMMUNE = ".$cm." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
-		}else{
-			$datauser = $this->db->query("SELECT * FROM base_resultat where CODE_BV = ".$id."")->result();
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND v.CODE_CV = ".$bv." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
+		}else {
+			if ($rg == "tous" && $ds == "tous" && $cm == "tous") {
+				$datauser = $this->db->query("SELECT * FROM base_resultat where etat = 3")->result();
+			}else if ( $rg <> "tous" && $ds == "tous" && $cm == "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ( $rg <> "tous" && $ds == "tous" && $cm <> "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." and b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ($rg <> "tous" && $ds <> "tous" && $cm == "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ($rg <> "tous" && $ds <> "tous" && $cm == "") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else if ($rg <> "tous" && $ds <> "tous" && $cm <> "tous") {
+				$datauser = $this->db->query("SELECT b.*
+				FROM base_resultat b , cv c , fokontany fk , commune cm , district ds , region rg WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+				AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND rg.CODE_REGION = ".$rg." AND ds.CODE_DISTRICT = ".$ds." AND cm.CODE_COMMUNE = ".$cm." AND b.etat = 3 GROUP BY b.CODE_BV ")->result();
+			}else{
+				$datauser = $this->db->query("SELECT * FROM base_resultat where CODE_BV = ".$bv."")->result();
+			}
 		}
+
 
 		$draw = intval($this->input->get("draw"));
 		$result = array();
