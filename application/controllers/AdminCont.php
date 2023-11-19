@@ -856,7 +856,7 @@ public function sendsms2()
 				$dat = $this->db->query("select * from base_sms where etat = 3")->result();
 				
 				foreach ($dat as $value) {
-					if($value->voix03 && $value->voix05 && $value->voix13 && $value->total){
+					if(($value->voix03 || $value->voix03 == 0 ) && ($value->voix05 || $value->voix05 == 0 ) && ($value->voix13 || $value->voix13 == 0 ) && $value->total){
 						$data = $this->db->query("select * from base_sms_tur where CODE_BV = ".$value->CODE_BV."")->row();
 						if ($data == null) {
 							$way = array(
@@ -868,9 +868,12 @@ public function sendsms2()
 								"etat" => 0
 								
 							);
+				
+
 							$this->db->insert("base_sms_tur", $way);
 							$this->db->query("update base_sms set etat = 4  where CODE_BV = ".$value->CODE_BV." ");
 						}else{
+							
 							$way = array(
 								"voix03"=> $value->voix03,
 								"voix05"=> $value->voix05,
@@ -879,6 +882,7 @@ public function sendsms2()
 								"etat" => 0
 							);
 							$this->db->where("CODE_BV")->update("base_sms_tur", $way);
+							$this->db->query("update base_sms set etat = 4  where CODE_BV = ".$value->CODE_BV." ");
 						}
 					}
 				}
@@ -888,31 +892,141 @@ public function sendsms2()
 			}
 
 
-/**********************************/
 
-public function croneetat()
+public function insertBV()
 	{
 		$select = '';
+				
+				//die;
+		foreach (json_decode($_POST["excelData"]) as $value) {
 
-		$data = $this->db->query("select * from basebrutesms where etat = 0 ")->result();
-		
-		foreach ($data as $key) {
-			
-			$value = [
-				"phone_number"=> $key->telephone,
-				"code_bv"=> $key->contentsms
-			];
+			if (isset($value->code_bv) || $value->code_bv != "") {
 
-			$dat = $this->db->select("*")->from("autorized_phone")->where("phone_number", $key->telephone)->where("code_bv", $key->contentsms)->get()->row();
+				$telephone = isset($value->telephone) ? $value->telephone : 0;
+				$voix03 = isset($value->voix03 ) ? $value->voix03 :0;
+				$voix05 = isset($value->voix05 ) ? $value->voix05 :0;
+				$voix13 = isset($value->voix13 ) ? $value->voix13 :0;
+				$total = isset($value->total) ? ( $value->total == 0 ? ($voix03 + $voix05 + $voix13 ) : $value->total ) : 0;
+				
+				$datas = $this->db->query("select * from base_sms where CODE_BV = ".$value->code_bv." ")->row();
 
-			if (!$dat) {
-				$this->db->insert("autorized_phone", $value);
-			}
-			$this->db->query("update basebrutesms set etat = 1 where id = ".$key->id." ");
-			
+					if ($datas) {
+
+						// if ($datas->voix03 == $voix03 && $datas->voix05 == $voix05 && $datas->voix13 == $voix13 && $datas->total == $total ) {
+							
+							
+						// }
+						// else{
+
+							$upd = array(
+								"etat" => 3,
+								"contact" => $telephone ,
+								"voix03" => $voix03 ,
+								"voix05" => $voix05 ,
+								"voix13" => $voix13 ,
+								"total" => $total 
+							);
+
+							//var_dump($upd);
+							$this->db->where("CODE_BV", $value->code_bv )->update("base_sms", $upd);
+						
+						//}
+
+					}else{
+
+						$anom = array(
+							"contact"=> $telephone,
+							"id_brute"=> null,
+							"anomalie"=> "Code BV inexistante depuis sms".$value->code_bv." "
+						);
+						$this->db->insert("anomalie_sms", $anom);
+
+					}
+
+
+				}
 		}
 
-	       $this->cronereponse();
+		
+		//$this->cronesaisie();
+
+		echo "nico" ;
+		
+
+
+	 
+	}
+public function insertBVintoResultat()
+	{
+		
+		$dat = $this->db->query("select * from excel_import where etat = 0 ")->result();
+
+		
+
+		foreach ($dat as $value) {
+			
+			
+			$datas = $this->db->query("select * from base_resultat where CODE_BV = ".$value->code_bv." ")->row();
+			if ($value->code_bv != "" || $value->code_bv != null) {
+				
+				if ($datas) {
+					//var_dump($value);
+
+					$voix01 =  ($value->voix01 == "") ? 0 : $value->voix01 ; 
+					$voix02 =  ($value->voix02 == "") ? 0 : $value->voix02 ; 
+					$voix02 =  ($value->voix02 == "") ? 0 : $value->voix02 ; 
+					$voix03 =  ($value->voix03 == "") ? 0 : $value->voix03 ; 
+					$voix04 =  ($value->voix04 == "") ? 0 : $value->voix04 ; 
+					$voix05 =  ($value->voix05 == "") ? 0 : $value->voix05 ; 
+					$voix06 =  ($value->voix06 == "") ? 0 : $value->voix06 ; 
+					$voix07 =  ($value->voix07 == "") ? 0 : $value->voix07 ; 
+					$voix08 =  ($value->voix08 == "") ? 0 : $value->voix08 ; 
+					$voix09 =  ($value->voix09 == "") ? 0 : $value->voix09 ; 
+					$voix10 =  ($value->voix10 == "") ? 0 : $value->voix10 ; 
+					$voix11 =  ($value->voix11 == "") ? 0 : $value->voix11 ; 
+					$voix12 =  ($value->voix12 == "") ? 0 : $value->voix12 ; 
+					$voix13 =  ($value->voix13 == "") ? 0 : $value->voix13 ; 
+					$total =  ($value->total == "") ? ( $voix01 + $voix02 + $voix03 + $voix04 + $voix04 + $voix05 + $voix06 + $voix07
+					+$voix08 + $voix09 + $voix10 + $voix11 + $voix12 + $voix13 ): $value->total ; 
+					
+					$array= array(
+					"voix01" => $voix01,
+					"voix02" => $voix02,
+					"voix03" => $voix03,
+					"voix04" => $voix04,
+					"voix05" => $voix05,
+					"voix06" => $voix06,
+					"voix07" => $voix07,
+					"voix08" => $voix08,
+					"voix09" => $voix09,
+					"voix10" => $voix10,
+					"voix11" => $voix11,
+					"voix12" => $voix12,
+					"voix13" => $voix13,
+					"maty" => $value->maty,
+					"fotsy" => $value->fotsy,
+					"total" => $total
+					);
+
+					//var_dump($array);
+				   $this->db->where("code_bv",$value->code_bv)->update("base_resultat", $array);
+				  $this->db->where("code_bv",$value->code_bv)->update("excel_import", array("etat"=> 1));
+
+				}else{
+
+					$anom = array(
+						"contact"=> '',
+						"id_brute"=> null,
+						"anomalie"=> "Code BV inexistante depuis PV".$value->code_bv." "
+					);
+				$this->db->insert("anomalie_sms", $anom);
+
+				}
+			}
+		}
+
+		echo "vita" ;
+	 
 	}
 
 

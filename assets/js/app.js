@@ -133,6 +133,50 @@ function choixRegion() {
 
 }
 
+$("#filejsimport").on('change', function(event) {
+	
+	$("#modaladdExcelupdate").addClass('show');
+
+	const file = event.target.files[0];
+	const reader = new FileReader();
+	
+	reader.onload = function(e) {
+	  const data = new Uint8Array(e.target.result);
+	  const workbook = XLSX.read(data, { type: 'array' });
+	  const sheetName = workbook.SheetNames[0];
+	  const worksheet = workbook.Sheets[sheetName];
+	  
+	  const headers = ['code_bv', 'voix03', 'voix05', 'voix13', 'total', "telephone"];  // Remplacez par vos nouveaux en-têtes
+	  const excelData = XLSX.utils.sheet_to_json(worksheet); // Le paramètre header: 1 indique que la première ligne est un en-tête
+      
+      // Renommer les en-têtes de colonne
+      //const renamedHeaders = ['NouveauHeader1', 'NouveauHeader2', 'NouveauHeader3']; // Ajoutez vos nouveaux noms d'en-tête ici
+      
+      //excelData[0] = headers;
+	  console.log(excelData);
+	  
+	  $.ajax({
+        url: adresse + 'AdminCont/insertBV',
+		dataType : "JSON",
+        method: 'POST',
+        data: { excelData: JSON.stringify(excelData) },
+        success: function(response) {
+          console.log('Données envoyées avec succès à CodeIgniter');
+          // Gérer la réponse de CodeIgniter ici
+        },
+        error: function(xhr, status, error) {
+          console.error('Erreur lors de l\'envoi des données à CodeIgniter:', error);
+        }
+      });
+
+
+	};
+	
+	reader.readAsArrayBuffer(file);
+	//$('#formAddExcelUpdate').unblock();
+});
+
+
 function choixRegionFiltre() {
     $.ajax({
         url: adresse + 'AdminCont/chargeDistrict1',
@@ -498,6 +542,8 @@ $('#formAdd').submit(function(event) {
     $.ajax({
         url: adresse + 'AdminCont/ajout',
         beforeSend: function(params) {
+			
+            
             $('#addDelegue').block({
                 message: '<i class="fa fa-spinner fa fa-3x fa-spin" style="color:#000;"></i>',
                 overlayCSS: {
