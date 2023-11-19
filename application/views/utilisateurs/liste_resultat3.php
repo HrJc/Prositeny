@@ -366,12 +366,12 @@
     }
 
 	function choixBVs() {
-        var id = $("#communeFiltrevote").val();
+        var bv = $("#communeFiltrevote").val();
         $.ajax({
             url: '<?php echo base_url('Utilisateurs/chargeBVS'); ?>',
             type: "POST",
             data: {
-                id: id
+                bv: bv
             },
             success: function(data) {
                 $("#bvFiltrevote").empty();
