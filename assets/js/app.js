@@ -677,7 +677,7 @@ $('#updatebvsms').submit(function(event) {
                 });
 
 
-                listeAno();
+                // listeAno();
 
             } else if (response.id == 2) {
 

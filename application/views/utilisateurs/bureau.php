@@ -38,9 +38,9 @@
 
 <div class="row" style = "margin:10px">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-	<h6>MESSAGES</h6>
+	<!-- <h6>MESSAGES</h6> -->
 	<button type="button" class="btn btn-primary" onclick='valideAno()' data-dismiss="modal">Ajouter</button>
-		<table class="table" id="table-liste-ano" style="font-size: x-small;width: 100% !important;">
+		<!-- <table class="table" id="table-liste-ano" style="font-size: x-small;width: 100% !important;">
 			<thead>
 				<tr>
 					<th style="background-color:#4237b3; color:white" class="text-center">Numéro</th>
@@ -50,9 +50,9 @@
 				</tr>
 			</thead>
 			<tbody >
-				<!--Ajax-->
+				Ajax
 			</tbody>
-		</table>
+		</table> -->
 	</div>
 	
 </div>
@@ -61,16 +61,16 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 <div class="modal" id="modaladdExcel" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg" role="document" style="width:346px">
-		<div class="modal-content" style='width:346px'>
+	<div class="modal-dialog modal-lg" role="document" style="width:500px">
+		<div class="modal-content" style='width:500px'>
 			<div class="modal-header">
-				<h5 class="modal-title">Validation</h5>
+				<h5 class="modal-title">Validation PV</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			
-			<div class="modal-body" style='width:346px' id="update">	
+			<div class="modal-body" style='width:500px' id="update">	
 			
 			<form method="POST" id="updatebvsms">
 				<div class="row">
@@ -78,29 +78,89 @@
 						
 					        <div class="mb-4" id='smsny'></div>
 							<div class="col  mb-4">
-								<label>Numero BV</label>
+								<label><strong>Numero BV</strong></label>
 								<input type="number" id="Telephone" name="bv" style="width:100%;height:38px"
-									class="form-control" placeholder="BV" required>
+									class="form-control" placeholder="Numero BV" required>
 							</div>
 							<div class="col  mb-4">
-								<label>13 - Siteny</label>
+								<label><strong>13 - Siteny Thierry Randrianasoloniaiko</strong></label>
 								<input type="number" id="Telephone" name="siteny" style="width:100%;height:38px"
 									class="form-control" placeholder="nbr vote" required>
 							</div>
+							<div class="col  mb-4">
+								<label><strong>12 - Jean-Jacques Jedidia Ratsietison</strong></label>
+								<input type="number" id="Telephone" name="jean" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>11 - Sendrison Daniela Raderanirina</strong></label>
+								<input type="number" id="Telephone" name="sendrison" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>10 - Hery Martial Rajaonarimampianina Rakotoarimanana</strong></label>
+								<input type="number" id="Telephone" name="hery" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>09 - Lalaina Harilanto Ratsirahonana</strong></label>
+								<input type="number" id="Telephone" name="lalaina" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>08 - Jean Brunelle Razafintsiandraofa</strong></label>
+								<input type="number" id="Telephone" name="brunelle" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>07 - Andry Tsiverizo Raobelina Andriamalala</strong></label>
+								<input type="number" id="Telephone" name="raobelina" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>06 - Auguste Richard Paraina</strong></label>
+								<input type="number" id="Telephone" name="auguste" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>05 - Marc Ravalomanana</strong></label>
+								<input type="number" id="Telephone" name="marc" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
 							<div class="col mb-4">
-								<label>03 - Rajoelina</label>
+								<label><strong>04 - Roland Ratsiraka</strong></label>
+								<input type="number" id="Telephone" name="roland" style="width:100%;height:38px"
+									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>03 - Andry Nirina Rajoelina</strong></label>
 								<input type="number" id="Telephone" name="andry" style="width:100%;height:38px"
 									class="form-control" placeholder="nbr vote" required>
 							</div>
 							<div class="col  mb-4">
-								<label>05 - Marc</label>
-								<input type="number" id="Telephone" name="marc" style="width:100%;height:38px"
+								<label><strong>02 - Hajo Herivelona Andrianainarivelo</strong></label>
+								<input type="number" id="Telephone" name="hajo" style="width:100%;height:38px"
 									class="form-control" placeholder="nbr vote" required>
 							</div>
 							<div class="col  mb-4">
-								<label>Total</label>
-								<input type="number" id="Telephone" name="total" style="width:100%;height:38px"
+								<label><strong>01 - Tahina Razafinjoelina</strong></label>
+								<input type="number" id="Telephone" name="tahina" style="width:100%;height:38px"
 									class="form-control" placeholder="nbr vote" required>
+							</div>
+							<div class="col  mb-4">
+								<label><strong>Fosty</strong></label>
+								<input type="number" id="Telephone" name="fotsy" style="width:100%;height:38px"
+									class="form-control" placeholder="Fotsy" >
+							</div>
+							<div class="col  mb-4">
+								<label><strong>Maty</strong></label>
+								<input type="number" id="Telephone" name="maty" style="width:100%;height:38px"
+									class="form-control" placeholder="Maty" >
+							</div>
+							<div class="col  mb-4">
+								<label><strong>Total</strong></label>
+								<input type="number" id="Telephone" name="total" style="width:100%;height:38px"
+									class="form-control" placeholder="Total" required>
 							</div>
 						<!-- <input class="form-control" name="raison-ano" id="raison-ano" rows="10" required></input> -->
 					</div>
@@ -313,7 +373,7 @@
 	jQuery(document).ready(function ($) {
 
 		// listeContratvote();
-		listeAno();
+		// listeAno();
 		// listeComptant();
 
 	});

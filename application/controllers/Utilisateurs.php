@@ -161,29 +161,29 @@ class Utilisateurs extends CI_Controller {
 				$region = explode('_', $value['id_region']);
 				$libs = '';
 
-				if (count($region) > 1) {
-					$count = 0;
-					foreach ($region as $key => $val) {
-						$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $val)->row();
-						$lib = $getLib->LIBELLE_REGION;
-						$libs .= $lib;
+				// if (count($region) > 1) {
+				// 	$count = 0;
+				// 	foreach ($region as $key => $val) {
+				// 		$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $val)->row();
+				// 		$lib = $getLib->LIBELLE_REGION;
+				// 		$libs .= $lib;
 						
-						if ($count < count($region) - 1) {
-							$libs .= ', ';  // Ajoute une virgule sauf à la dernière itération
-						}
+				// 		if ($count < count($region) - 1) {
+				// 			$libs .= ', ';  // Ajoute une virgule sauf à la dernière itération
+				// 		}
 						
-						$count++;
-					}
-				} else {
-					// S'il n'y a qu'une seule région, assignez simplement le libellé à $libs
-					$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $region[0])->row();
-					$libs = $getLib->LIBELLE_REGION;
-				}
+				// 		$count++;
+				// 	}
+				// } else {
+				// 	// S'il n'y a qu'une seule région, assignez simplement le libellé à $libs
+				// 	$getLib = $this->db->query("SELECT * FROM region WHERE CODE_REGION = " . $region[0])->row();
+				// 	$libs = $getLib->LIBELLE_REGION;
+				// }
 
 				$data[]  = [
-								$value['nom']. " ".$value['prenom'],
+								$value['pseudo'],
 								$value['email'],
-								$libs
+								// $libs
 						   ];
 			}
 		}
@@ -1187,6 +1187,26 @@ class Utilisateurs extends CI_Controller {
 		echo $select;
 	}
 
+	public function chargeBVS2()
+	{
+		$select = '';
+
+		$data = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+		FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+		AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND 
+		cm.CODE_COMMUNE = " . $_POST["id"] . "")->result();
+		$i = 0;
+		foreach ($data as $key) {
+			$sel = ($i == 0) ? "selected" : "";
+			$select .= "<option value='" . $key->CODE_BV . "' >" . $key->LIBELLE_BV . "</option>";
+			$i++;
+		}
+
+
+
+		echo $select;
+	}
+
 	public function resultat2()
 	{
 		$this->testerSession();
@@ -1194,7 +1214,7 @@ class Utilisateurs extends CI_Controller {
 		$data['prenom'] = $_SESSION['prenom'];
 		$data['idRegion'] = $_SESSION['idRegion'];
 		$data['tabRegion'] = $_SESSION['tabRegion'];
-		$data['title'] = 'SITENY | Liste utilisateur';
+		$data['title'] = 'SITENY | RESULTAT';
 		$regions = $this->db->query("select * from region")->result();
 		if ($_SESSION['type'] == "Administrateur") {
 			$faritra = $this->db->query("select * from faritany ")->result();
@@ -1214,6 +1234,66 @@ class Utilisateurs extends CI_Controller {
 		$data['regions'] = $regions;
 		$this->load->view('layout/header', $data);
 		$this->load->view('utilisateurs/liste_resultat2', $data);
+		$this->load->view('layout/footer');
+	}
+
+	public function resultat3()
+	{
+		$this->testerSession();
+		$data['type'] = $_SESSION['type'];
+		$data['prenom'] = $_SESSION['prenom'];
+		$data['idRegion'] = $_SESSION['idRegion'];
+		$data['tabRegion'] = $_SESSION['tabRegion'];
+		$data['title'] = 'SITENY | RESULTAT';
+		$regions = $this->db->query("select * from region")->result();
+		if ($_SESSION['type'] == "Administrateur") {
+			$faritra = $this->db->query("select * from faritany ")->result();
+			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV AND ba.etat = 3")->result();
+		} else {
+			$faritra = $this->db->query("select r.CODE_REGION , r.LIBELLE_REGION , f.CODE_FARITANY , LIBELLE_FARITANY from faritany f  join region r on r.CODE_FARITANY = f.CODE_FARITANY WHERE r.CODE_REGION in (  " . implode(",", $data['tabRegion']) . " ) group by r.CODE_FARITANY ")->result();
+			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV AND ba.etat = 3")->result();
+		}
+
+		//var_dump($region);die;
+		$data['faritra'] = $faritra;
+		$data['region'] = $region;
+		$data['regions'] = $regions;
+		$this->load->view('layout/header', $data);
+		$this->load->view('utilisateurs/liste_resultat3', $data);
+		$this->load->view('layout/footer');
+	}
+
+	public function resultat4()
+	{
+		$this->testerSession();
+		$data['type'] = $_SESSION['type'];
+		$data['prenom'] = $_SESSION['prenom'];
+		$data['idRegion'] = $_SESSION['idRegion'];
+		$data['tabRegion'] = $_SESSION['tabRegion'];
+		$data['title'] = 'SITENY | RESULTAT GLOBAL';
+		$regions = $this->db->query("select * from region")->result();
+		if ($_SESSION['type'] == "Administrateur") {
+			$faritra = $this->db->query("select * from faritany ")->result();
+			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_resultat ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV")->result();
+		} else {
+			$faritra = $this->db->query("select r.CODE_REGION , r.LIBELLE_REGION , f.CODE_FARITANY , LIBELLE_FARITANY from faritany f  join region r on r.CODE_FARITANY = f.CODE_FARITANY WHERE r.CODE_REGION in (  " . implode(",", $data['tabRegion']) . " ) group by r.CODE_FARITANY ")->result();
+			$region = $this->db->query("SELECT rg.LIBELLE_REGION , ds.LIBELLE_DISTRICT , cm.LIBELLE_COMMUNE, b.CODE_BV, b.LIBELLE_BV
+			FROM bv b , cv c , fokontany fk , commune cm , district ds , region rg, base_sms_tur ba  WHERE b.CODE_CV = c.CODE_CV AND c.CODE_FOKONTANY = fk.CODE_FOKONTANY
+			AND fk.CODE_COMMUNE = cm.CODE_COMMUNE AND ds.CODE_DISTRICT = cm.CODE_DISTRICT AND rg.CODE_REGION = ds.CODE_REGION AND ba.CODE_BV = b.CODE_BV")->result();
+		}
+
+		//var_dump($region);die;
+		$data['faritra'] = $faritra;
+		$data['region'] = $region;
+		$data['regions'] = $regions;
+		$this->load->view('layout/header', $data);
+		$this->load->view('utilisateurs/liste_resultat4', $data);
 		$this->load->view('layout/footer');
 	}
 
@@ -1296,6 +1376,145 @@ class Utilisateurs extends CI_Controller {
 				mkdir($communeDirectory, 0777, true);
 			}
 		}
+	}
+
+	public function listerVoteGlo()
+	{
+		$id = $this->input->post('id'); 
+
+		if ($id == 'tous' || $id == '') {
+			$datauser = $this->db->query("SELECT * FROM base_resultat")->result();
+		}else {
+			$datauser = $this->db->query("SELECT * FROM base_resultat where CODE_BV = ".$id."")->result();
+		}
+
+		$draw = intval($this->input->get("draw"));
+		$result = array();
+		$count = 0;
+		$somme = 0;
+		$somme1 = 0;
+		$somme2 = 0;
+		$somme3 = 0;
+		$somme4 = 0;
+		$somme5 = 0;
+		$somme6 = 0;
+		$somme7 = 0;
+		$somme8 = 0;
+		$somme9 = 0;
+		$somme10 = 0;
+		$somme11 = 0;
+		$somme12 = 0;
+		$somme13 = 0;
+		if (!empty($datauser)) {
+			foreach ($datauser as $value)
+			{		
+				$somme1 += 	$value->voix01;			
+				$somme2 += 	$value->voix02;			
+				$somme3 += 	$value->voix03;			
+				$somme4 += 	$value->voix04;			
+				$somme5 += 	$value->voix05;				
+				$somme6 += 	$value->voix06;				
+				$somme7 += 	$value->voix07;				
+				$somme8 += 	$value->voix08;				
+				$somme9 += 	$value->voix09;				
+				$somme10 += 	$value->voix10;				
+				$somme11 += 	$value->voix11;				
+				$somme12 += 	$value->voix12;				
+				$somme13 += $value->voix13;			
+				$somme += $value->total;			
+				$count ++;
+			}
+			if ($somme != 0) {
+				$resultat = array(
+					'sum1' => round((($somme1*100)/$somme), 2) . '%',
+					'sum2' => round((($somme2*100)/$somme), 2) . '%',
+					'sum3' => round((($somme3*100)/$somme), 2) . '%',
+					'sum4' => round((($somme4*100)/$somme), 2) . '%',
+					'sum5' => round((($somme5*100)/$somme), 2) . '%',
+					'sum6' => round((($somme6*100)/$somme), 2) . '%',
+					'sum7' => round((($somme7*100)/$somme), 2) . '%',
+					'sum8' => round((($somme8*100)/$somme), 2) . '%',
+					'sum9' => round((($somme9*100)/$somme), 2) . '%',
+					'sum10' => round((($somme10*100)/$somme), 2) . '%',
+					'sum11' => round((($somme11*100)/$somme), 2) . '%',
+					'sum12' => round((($somme12*100)/$somme), 2) . '%',
+					'sum13' => round((($somme13*100)/$somme), 2) . '%',
+					'total1' => $somme1,
+					'total2' => $somme2,
+					'total3' => $somme3,
+					'total4' => $somme4,
+					'total5' => $somme5,
+					'total6' => $somme6,
+					'total7' => $somme7,
+					'total8' => $somme8,
+					'total9' => $somme9,
+					'total10' => $somme10,
+					'total11' => $somme11,
+					'total12' => $somme12,
+					'total13' => $somme13,
+					'totalsum' => $somme,
+					'count' => $count,
+				);	
+			}else {
+
+				$resultat = array(
+					'sum1' => '0%',
+					'sum2' => '0%',
+					'sum3' => '0%',
+					'sum4' => '0%',
+					'sum5' => '0%',
+					'sum6' => '0%',
+					'sum7' => '0%',
+					'sum8' => '0%',
+					'sum9' => '0%',
+					'sum10' => '0%',
+					'sum11' => '0%',
+					'sum12' => '0%',
+					'sum13' => '0%',
+					'total1' => $somme1,
+					'total2' => $somme2,
+					'total3' => $somme3,
+					'total4' => $somme4,
+					'total5' => $somme5,
+					'total6' => $somme6,
+					'total7' => $somme7,
+					'total8' => $somme8,
+					'total9' => $somme9,
+					'total10' => $somme10,
+					'total11' => $somme11,
+					'total12' => $somme12,
+					'total13' => $somme13,
+					'totalsum' => $somme,
+					'count' => $count,
+				);	
+			}
+		
+			
+			$result = [
+						"draw" => $draw,
+						"resultat" => $resultat,
+					];
+	
+			echo json_encode($result);
+		}else {
+			$resultat = array(
+				'sum3' => 0 . '%',
+				'sum5' => 0 . '%',
+				'sum13' => 0 . '%',
+				'total13' => $somme13,
+				'total3' => $somme3,
+				'total5' => $somme5,
+				'totalsum' => $somme,
+				'count' => $count,
+			);	
+			$result = [
+				"draw" => $draw,
+				"resultat" => $resultat,
+			];
+
+			echo json_encode($result);
+		}
+
 	}
 	
 }
