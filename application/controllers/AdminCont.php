@@ -986,8 +986,11 @@ public function insertBVintoResultat()
 					$voix11 =  ($value->voix11 == "") ? 0 : $value->voix11 ; 
 					$voix12 =  ($value->voix12 == "") ? 0 : $value->voix12 ; 
 					$voix13 =  ($value->voix13 == "") ? 0 : $value->voix13 ; 
+					$maty =  ($value->maty == "") ? 0 : $value->maty ; 
+					$foty =  ($value->foty == "") ? 0 : $value->foty ; 
 					$total =  ($value->total == "") ? ( $voix01 + $voix02 + $voix03 + $voix04 + $voix04 + $voix05 + $voix06 + $voix07
 					+$voix08 + $voix09 + $voix10 + $voix11 + $voix12 + $voix13 ): $value->total ; 
+					$iaby =  ($value->iaby == "") ? ( $maty + $foty + $total ) : $value->iaby ; 
 					
 					$array= array(
 					"voix01" => $voix01,
@@ -1005,6 +1008,7 @@ public function insertBVintoResultat()
 					"voix13" => $voix13,
 					"maty" => $value->maty,
 					"fotsy" => $value->fotsy,
+					"iaby" => $iaby,
 					"total" => $total,
 					"etat" => 3
 					);
