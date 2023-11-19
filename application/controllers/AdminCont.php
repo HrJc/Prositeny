@@ -1010,7 +1010,7 @@ public function insertBVintoResultat()
 
 					//var_dump($array);
 				   $this->db->where("code_bv",$value->code_bv)->update("base_resultat", $array);
-				  $this->db->where("code_bv",$value->code_bv)->update("excel_import", array("etat"=> 1));
+				  $this->db->where("code_bv",$value->code_bv)->update("excel_import", array("etat"=> 3));
 
 				}else{
 
