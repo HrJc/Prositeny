@@ -42,6 +42,70 @@
 <br>
 
 <br>
+
+<div class="row" style="margin:10px">
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="card">
+		<h5 class="card-header"></h5>
+			<ul class="list-unstyled card-body mb-0 pb-0">
+				<li><strong>TOTAL BV : <span class="totalBV"></span></strong></li>
+				<li><strong>Votants : <span class="totalsum"></span></strong></li>
+				<li><strong>Blancs et Nuls : <span class="blanc"></span></strong></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="card">
+		<h5 class="card-header"></h5>
+			<ul class="list-unstyled card-body mb-0 pb-0">
+				<li><strong>Suffrages exprimés: : <span class=""></span></strong></li>
+				<li><strong>Taux de participation : <span class=""></span></strong></li>
+				<li><strong>Voix 01 : <span class="total1"></span></strong></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="card">
+			<h5 class="card-header"></h5>
+			<ul class="list-unstyled card-body mb-0 pb-0">
+				<li><strong>Voix 02 : <span class="total2"></span></strong></li>
+				<li><strong>Voix 03 : <span class="total3"></span></strong></li>
+				<li><strong>Voix 04 : <span class="total4"></span></strong></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="card">
+			<h5 class="card-header"></h5>
+			<ul class="list-unstyled card-body mb-0 pb-0">
+				<li><strong>Voix 05 : <span class="total5"></span></strong></li>
+				<li><strong>Voix 06 : <span class="total6"></span></strong></li>
+				<li><strong>Voix 07 : <span class="total7"></span></strong></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="card">
+			<h5 class="card-header"></h5>
+			<ul class="list-unstyled card-body mb-0 pb-0">
+				<li><strong>Voix 08 : <span class="total8"></span></strong></li>
+				<li><strong>Voix 09 : <span class="total9"></span></strong></li>
+				<li><strong>Voix 10 : <span class="total10"></span></strong></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="card">
+			<h5 class="card-header"></h5>
+			<ul class="list-unstyled card-body mb-0 pb-0">
+				<li><strong>Voix 11 : <span class="total11"></span></strong></li>
+				<li><strong>Voix 12 : <span class="total12"></span></strong></li>
+				<li><strong>Voix 13 : <span class="total13"></span></strong></li>
+			</ul>
+		</div>
+	</div>	
+</div>
+<br>
 <div class="row" style="margin:10px">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<label><strong>Région :</strong></label>
@@ -66,18 +130,7 @@
 	</div>
 	
 </div>
-<!-- <div class="row" style="margin:10px">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
-		<label><strong>Bureau de vote :</strong></label>
-		<select data-live-search=true id="bvFiltrevote" title="District" required name="ds">
-				<option value=""></option>
-			<?php foreach ($region as $key => $value) { ?>
-				<option value="<?php echo $value->CODE_BV ?>"><?php echo $value->LIBELLE_DISTRICT. ' - ' .$value->LIBELLE_COMMUNE. ' - ' .$value->LIBELLE_BV ?></option>
-			<?php } ?>
-		</select>&emsp;
-	</div>
-	
-</div> -->
+<br>
 
 
 <!-- <div class="row" style="margin:10px">
@@ -307,7 +360,6 @@
 	
     $("#bvFiltrevote").on('change', function() {
 		listeContratvote();
-		listeContratvote();
     });
 
     function choixRegionFiltre1() {
@@ -476,6 +528,7 @@
 				console.log(data);
 				$('.totalsum').text(data.resultat.totalsum);
 				$('.totalBV').text(data.resultat.count);
+				$('.blanc').text(data.resultat.blanc);
 				for (let i = 1; i < 14; i++) {							
 					var propertyName = 'sum' + i;
 					var Name = 'total' + i;
