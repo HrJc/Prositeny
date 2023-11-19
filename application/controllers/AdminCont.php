@@ -856,7 +856,7 @@ public function sendsms2()
 				$dat = $this->db->query("select * from base_sms where etat = 3")->result();
 				
 				foreach ($dat as $value) {
-					if($value->voix03 && $value->voix05 && $value->voix13 && $value->total){
+					if(($value->voix03 || $value->voix03 == 0 ) && ($value->voix05 || $value->voix05 == 0 ) && ($value->voix13 || $value->voix13 == 0 ) && $value->total){
 						$data = $this->db->query("select * from base_sms_tur where CODE_BV = ".$value->CODE_BV."")->row();
 						if ($data == null) {
 							$way = array(
@@ -868,9 +868,12 @@ public function sendsms2()
 								"etat" => 0
 								
 							);
+				
+
 							$this->db->insert("base_sms_tur", $way);
 							$this->db->query("update base_sms set etat = 4  where CODE_BV = ".$value->CODE_BV." ");
 						}else{
+							
 							$way = array(
 								"voix03"=> $value->voix03,
 								"voix05"=> $value->voix05,
@@ -879,6 +882,7 @@ public function sendsms2()
 								"etat" => 0
 							);
 							$this->db->where("CODE_BV")->update("base_sms_tur", $way);
+							$this->db->query("update base_sms set etat = 4  where CODE_BV = ".$value->CODE_BV." ");
 						}
 					}
 				}
@@ -893,52 +897,63 @@ public function insertBV()
 	{
 		$select = '';
 
+				
+				//die;
 		foreach (json_decode($_POST["excelData"]) as $value) {
 
-			if ($value->code_bv != null) {
+			if (isset($value->code_bv) || $value->code_bv != "") {
 
+				$telephone = isset($value->telephone) ? $value->telephone : 0;
+				$voix03 = isset($value->voix03 ) ? $value->voix03 :0;
+				$voix05 = isset($value->voix05 ) ? $value->voix05 :0;
+				$voix13 = isset($value->voix13 ) ? $value->voix13 :0;
+				$total = isset($value->total) ? ( $value->total == 0 ? ($voix03 + $voix05 + $voix13 ) : $value->total ) : 0;
+				var_dump($total);
 				$datas = $this->db->query("select * from base_sms where CODE_BV = ".$value->code_bv." ")->row();
 
-				if ($datas) {
+					if ($datas) {
 
-				    if ($datas->voix03 == $value->vaoix03 && $datas->voix05 == $value->vaoix05 && $datas->voix13 == $value->vaoix13 && $datas->voix13 == $value->vaoix13 ) {
+						// if ($datas->voix03 == $voix03 && $datas->voix05 == $voix05 && $datas->voix13 == $voix13 && $datas->total == $total ) {
+							
+							
+						// }
+						// else{
+
+							$upd = array(
+								"etat" => 3,
+								"contact" => $telephone ,
+								"voix03" => $voix03 ,
+								"voix05" => $voix05 ,
+								"voix13" => $voix13 ,
+								"total" => $total 
+							);
+
+							//var_dump($upd);
+							$this->db->where("CODE_BV", $value->code_bv )->update("base_sms", $upd);
 						
-						
-					}
-					else{
+						//}
 
-						var_dump($value);	
+					}else{
 
-						/*$upd = array(
-							"etat" => 3,
-							"contact" => $value->telephone ,
-							"voix03" => $value->vaoix03 ,
-							"voix05" => $value->voix05 ,
-							"voix13" => $value->voix13 ,
-							"total" => $value->total 
+						$anom = array(
+							"contact"=> $telephone,
+							"id_brute"=> null,
+							"anomalie"=> "Code BV inexistante ".$value->code_bv." "
 						);
-						$this->db->where("CODE_BV", $value->code_bv )->update("base_sms", $upd);*/
-					
+						$this->db->insert("anomalie_sms", $anom);
+
 					}
 
-				}else{
-
-					/*$anom = array(
-						"contact"=> $value->telephone,
-						"id_brute"=> null,
-						"anomalie"=> "Code BV inexistante ".$value->code_bv." "
-					);
-					$this->db->insert("anomalie_sms", $anom);*/
 
 				}
-
-
-			}
-		
-
 		}
 
+		
 		$this->cronesaisie();
+
+		echo "nico" ;
+		
+
 
 	 
 	}
