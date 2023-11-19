@@ -959,33 +959,58 @@ public function insertBV()
 public function insertBVintoResultat()
 	{
 		
-		$dat = $this->db->query("select * from excel_result")->result();
+		$dat = $this->db->query("select * from excel_import where etat = 0 ")->result();
+
+		
 
 		foreach ($dat as $value) {
-
+			
+			
 			$datas = $this->db->query("select * from base_resultat where CODE_BV = ".$value->code_bv." ")->row();
-
+			if ($value->code_bv != "" || $value->code_bv != null) {
+				
 				if ($datas) {
+					//var_dump($value);
 
-				$array = array(
-				"voix01" => $value->voix01,
-				"voix02" => $value->voix02,
-				"voix03" => $value->voix03,
-				"voix04" => $value->voix04,
-				"voix05" => $value->voix05,
-				"voix06" => $value->voix06,
-				"voix07" => $value->voix07,
-				"voix08" => $value->voix08,
-				"voix09" => $value->voix09,
-				"voix10" => $value->voix10,
-				"voix11" => $value->voix11,
-				"voix12" => $value->voix12,
-				"voix13" => $value->voix13,
-				"maty" => $value->maty,
-				"fotsy" => $value->fotsy,
-				"total" => $value->total
-				);
-				$this->db->where()->update("base_resultat", $array);
+					$voix01 =  ($value->voix01 == "") ? 0 : $value->voix01 ; 
+					$voix02 =  ($value->voix02 == "") ? 0 : $value->voix02 ; 
+					$voix02 =  ($value->voix02 == "") ? 0 : $value->voix02 ; 
+					$voix03 =  ($value->voix03 == "") ? 0 : $value->voix03 ; 
+					$voix04 =  ($value->voix04 == "") ? 0 : $value->voix04 ; 
+					$voix05 =  ($value->voix05 == "") ? 0 : $value->voix05 ; 
+					$voix06 =  ($value->voix06 == "") ? 0 : $value->voix06 ; 
+					$voix07 =  ($value->voix07 == "") ? 0 : $value->voix07 ; 
+					$voix08 =  ($value->voix08 == "") ? 0 : $value->voix08 ; 
+					$voix09 =  ($value->voix09 == "") ? 0 : $value->voix09 ; 
+					$voix10 =  ($value->voix10 == "") ? 0 : $value->voix10 ; 
+					$voix11 =  ($value->voix11 == "") ? 0 : $value->voix11 ; 
+					$voix12 =  ($value->voix12 == "") ? 0 : $value->voix12 ; 
+					$voix13 =  ($value->voix13 == "") ? 0 : $value->voix13 ; 
+					$total =  ($value->total == "") ? ( $voix01 + $voix02 + $voix03 + $voix04 + $voix04 + $voix05 + $voix06 + $voix07
+					+$voix08 + $voix09 + $voix10 + $voix11 + $voix12 + $voix13 ): $value->total ; 
+					
+					$array= array(
+					"voix01" => $voix01,
+					"voix02" => $voix02,
+					"voix03" => $voix03,
+					"voix04" => $voix04,
+					"voix05" => $voix05,
+					"voix06" => $voix06,
+					"voix07" => $voix07,
+					"voix08" => $voix08,
+					"voix09" => $voix09,
+					"voix10" => $voix10,
+					"voix11" => $voix11,
+					"voix12" => $voix12,
+					"voix13" => $voix13,
+					"maty" => $value->maty,
+					"fotsy" => $value->fotsy,
+					"total" => $total
+					);
+
+					//var_dump($array);
+				   $this->db->where("code_bv",$value->code_bv)->update("base_resultat", $array);
+				  $this->db->where("code_bv",$value->code_bv)->update("excel_import", array("etat"=> 1));
 
 				}else{
 
@@ -996,10 +1021,11 @@ public function insertBVintoResultat()
 					);
 				$this->db->insert("anomalie_sms", $anom);
 
-		}
+				}
+			}
 		}
 
-
+		echo "vita" ;
 	 
 	}
 
