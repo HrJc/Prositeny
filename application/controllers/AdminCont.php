@@ -2683,4 +2683,51 @@ public function insertBVintoResultat()
 
 		echo $select;
 	}
+	// public function send_mail() {
+        
+        
+    //     $from_email = "nicotahindraza310501@gmail.com";
+    //     //$to_email = $this->input->post('email');
+
+    //     //Load email library 
+    //     //$this->load->library('email');
+
+	// 	$config = Array(
+	// 		'protocol' => 'smtp',
+	// 		'smtp_host' => 'ssl://smtp.gmail.com',
+	// 		'smtp_port' => 465,
+	// 		'smtp_user' => 'nicotahindraza310501@gmail.com',
+	// 		'smtp_pass' => 'Watawata310501',
+	// 		'mailtype'  => 'html', 
+	// 		'charset'   => 'iso-8859-1'
+	// 	);
+	// 	$this->load->library('email', $config);
+
+	// 	try {
+	// 		//code...
+	// 	} catch (\Throwable $th) {
+	// 		//throw $th;
+	// 	}
+	// 	//$this->email->initiliaze($config);
+    //     $this->email->from($from_email);
+    //     $this->email->to("mmanager567@gmail.com");
+    //     $this->email->subject('Email Test');
+    //     $this->email->message('Testing the email class.');
+
+    //     //Send mail 
+    //     if ($this->email->send())
+    //         echo "oui";
+    //     else
+    //         echo "non";
+    // }
+	public function send_email() {
+		
+        $this->load->library('phpmailer_lib');
+		
+        if ($this->phpmailer_lib->sendEmail()) {
+            echo 'Email has been sent';
+        } else {
+            echo 'Email could not be sent' ;
+		}
+    }
 }

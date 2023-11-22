@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // $config['base_url'] = 'http://localhost/Prositeny';
 $config['base_url'] = 'http://localhost/Prositeny';
-$config['base_url'] = 'http://192.168.88.93/Prositeny';
-$config['base_url'] = 'http://102.16.214.93/Prositeny';
+// $config['base_url'] = 'http://192.168.88.93/Prositeny';
+// $config['base_url'] = 'http://102.16.214.93/Prositeny';
 
 /*
 |--------------------------------------------------------------------------
@@ -533,3 +533,12 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$config['protocol'] = 'smtp';
+$config['smtp_host'] = 'ssl://smtp.gmail.com'; // Serveur SMTP de Gmail
+$config['smtp_port'] = 465; // Port SMTP pour SSL
+$config['smtp_user'] = 'nicotahindraza310501@gmail.com'; // Votre adresse e-mail Gmail
+$config['smtp_pass'] = 'Watawata310501'; // Mot de passe de votre compte Gmail
+$config['mailtype'] = 'html'; // Type de contenu : 'html' ou 'text'
+$config['charset'] = 'utf-8'; // Encodage
+$config['newline'] = "\r\n";
