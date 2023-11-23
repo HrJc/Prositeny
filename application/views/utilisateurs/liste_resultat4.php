@@ -206,7 +206,7 @@
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/10.jpg" />
 		  <div class="media-body align-self-center">
 			<strong>10 - Hery Martial Rajaonarimampianina Rakotoarimanana</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum5"></span> Voting : <span class="total10"></span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum10"></span> Voting : <span class="total10"></span> / <span class="totalsum"></span></div>
 			<div class="progress mb-1" style="height: 10px;">
 			  <div class="progress-bar" id="sum10" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
@@ -282,7 +282,7 @@
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/8.jpg" />
 		  <div class="media-body align-self-center">
 			<strong>8 - Jean Brunelle Razafintsiandraofa</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum3"></span> Voting : <span class="total8"></span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum8"></span> Voting : <span class="total8"></span> / <span class="totalsum"></span></div>
 			<div class="progress mb-1" style="height: 10px;">
 			  <div class="progress-bar" id="sum8" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
@@ -312,7 +312,7 @@
 		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/11.jpg" />
 		<div class="media-body align-self-center">
 			<strong>11 - Sendrison Daniela Raderanirina</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum13"></span> Voting : <span class="total11"> </span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum11"></span> Voting : <span class="total11"> </span> / <span class="totalsum"></span></div>
 			<div class="progress mb-1" style="height: 10px;">
 			<div class="progress-bar" id="sum11" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
@@ -322,7 +322,7 @@
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/12.jpg" />
 		  <div class="media-body align-self-center">
 			<strong>12 - Jean-Jacques Jedidia Ratsietison</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum3"></span> Voting : <span class="total12"></span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum12"></span> Voting : <span class="total12"></span> / <span class="totalsum"></span></div>
 			<div class="progress mb-1" style="height: 10px;">
 			  <div class="progress-bar" id="sum12" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
