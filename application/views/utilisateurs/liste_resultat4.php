@@ -551,19 +551,19 @@
 			dataType : "JSON",
 			success: function (data) {
 				console.log(data);
-				// $('.votant').text(data.resultat.votant);
-				// $('.totalsum').text(data.resultat.totalsum);
-				// $('.totalBV').text(data.resultat.count);
-				// $('.blanc').text(data.resultat.blanc);
-				// for (let i = 6; i < 13; i++) {							
-				// 	var propertyName = 'sum' + i;
-				// 	var Name = 'total' + i;
-				// 	$('.total' + i).text(data.resultat[Name]);
-				// 	var progress = data.resultat[propertyName];
-				// 	$('#sum' + i).css('width', progress);
-				// 	$('#textsum' + i).html(progress);
-				// 	$('#sum' + i).attr('aria-valuenow', progress);
-				// }
+				$('.votant').text(data.resultat.votant);
+				$('.totalsum').text(data.resultat.totalsum);
+				$('.totalBV').text(data.resultat.count);
+				$('.blanc').text(data.resultat.blanc);
+				for (let i = 6; i < 13; i++) {							
+					var propertyName = 'sum' + i;
+					var Name = 'total' + i;
+					$('.total' + i).text(data.resultat[Name]);
+					var progress = data.resultat[propertyName];
+					$('#sum' + i).css('width', progress);
+					$('#textsum' + i).html(progress);
+					$('#sum' + i).attr('aria-valuenow', progress);
+				}
 			}
 		});
 
