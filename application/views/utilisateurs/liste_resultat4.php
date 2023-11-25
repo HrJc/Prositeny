@@ -42,93 +42,96 @@
 <br>
 
 <br>
-
-<div class="row" style="margin:10px">
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-		<div class="card">
-		<h5 class="card-header"></h5>
-			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>TOTAL BV : <span class="totalBV"></span></strong></li>
-				<li><strong>Votants : <span class="votant"></span></strong></li>
-				<li><strong>Blancs et Nuls : <span class="blanc"></span></strong></li>
-			</ul>
-		</div>
-	</div>	
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-		<div class="card">
-		<h5 class="card-header"></h5>
-			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>Suffrages exprimés: : <span class="totalsum"></span></strong></li>
-				<li><strong>Voix 01 : <span class="total1"></span></strong></li>
-			</ul>
-		</div>
-	</div>	
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-		<div class="card">
+<div style="display:none">
+	<div class="row" style="margin:10px">
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<div class="card">
 			<h5 class="card-header"></h5>
-			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>Voix 02 : <span class="total2"></span></strong></li>
-				<li><strong>Voix 03 : <span class="total3"></span></strong></li>
-				<li><strong>Voix 04 : <span class="total4"></span></strong></li>
-			</ul>
-		</div>
-	</div>	
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-		<div class="card">
+				<ul class="list-unstyled card-body mb-0 pb-0">
+					<li><strong>TOTAL BV : <span class="totalBV"></span></strong></li>
+					<li><strong>Votants : <span class="votant"></span></strong></li>
+					<li><strong>Blancs et Nuls : <span class="blanc"></span></strong></li>
+				</ul>
+			</div>
+		</div>	
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<div class="card">
 			<h5 class="card-header"></h5>
-			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>Voix 05 : <span class="total5"></span></strong></li>
-				<li><strong>Voix 06 : <span class="total6"></span></strong></li>
-				<li><strong>Voix 07 : <span class="total7"></span></strong></li>
-			</ul>
-		</div>
-	</div>	
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-		<div class="card">
-			<h5 class="card-header"></h5>
-			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>Voix 08 : <span class="total8"></span></strong></li>
-				<li><strong>Voix 09 : <span class="total9"></span></strong></li>
-				<li><strong>Voix 10 : <span class="total10"></span></strong></li>
-			</ul>
-		</div>
-	</div>	
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-		<div class="card">
-			<h5 class="card-header"></h5>
-			<ul class="list-unstyled card-body mb-0 pb-0">
-				<li><strong>Voix 11 : <span class="total11"></span></strong></li>
-				<li><strong>Voix 12 : <span class="total12"></span></strong></li>
-				<li><strong>Voix 13 : <span class="total13"></span></strong></li>
-			</ul>
-		</div>
-	</div>	
-</div>
-<br>
-<div class="row" style="margin:10px">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<label><strong>Région :</strong></label>
-		<select data-live-search="true" name="regionFiltrevote" id="regionFiltrevote">
-			<option value="tous" selected>Tous</option>
-			<?php foreach ($region as $key => $value) { ?>
-				<option value="<?php echo $value->CODE_REGION ?>"><?php echo  $value->LIBELLE_REGION ?></option>
-			<?php } ?>
-		</select>
-		<label><strong>District :</strong></label>
-		<select data-live-search=true id="districtFiltrevote" title="District" required name="ds">
-			<option value="tous" selected>Tous</option>
-		</select>&emsp;
-		<label><strong>commnune :</strong></label>
-		<select data-live-search=true id="communeFiltrevote" title="District" required name="ds">
-			<option value="tous" selected>Tous</option>
-		</select>&emsp;
-		<label><strong>Bureau de vote :</strong></label> 
-		<select data-live-search=true id="bvFiltrevote" title="District" required name="ds">
-			<option value="tous" selected>Tous</option> 
-		</select>&emsp;
+				<ul class="list-unstyled card-body mb-0 pb-0">
+					<li><strong>Suffrages exprimés: : <span class="totalsum"></span></strong></li>
+					<li><strong>Voix 01 : <span class="total1"></span></strong></li>
+				</ul>
+			</div>
+		</div>	
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<div class="card">
+				<h5 class="card-header"></h5>
+				<ul class="list-unstyled card-body mb-0 pb-0">
+					<li><strong>Voix 02 : <span class="total2"></span></strong></li>
+					<li><strong>Voix 03 : <span class="total3"></span></strong></li>
+					<li><strong>Voix 04 : <span class="total4"></span></strong></li>
+				</ul>
+			</div>
+		</div>	
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<div class="card">
+				<h5 class="card-header"></h5>
+				<ul class="list-unstyled card-body mb-0 pb-0">
+					<li><strong>Voix 05 : <span class="total5"></span></strong></li>
+					<li><strong>Voix 06 : <span class="total6"></span></strong></li>
+					<li><strong>Voix 07 : <span class="total7"></span></strong></li>
+				</ul>
+			</div>
+		</div>	
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<div class="card">
+				<h5 class="card-header"></h5>
+				<ul class="list-unstyled card-body mb-0 pb-0">
+					<li><strong>Voix 08 : <span class="total8"></span></strong></li>
+					<li><strong>Voix 09 : <span class="total9"></span></strong></li>
+					<li><strong>Voix 10 : <span class="total10"></span></strong></li>
+				</ul>
+			</div>
+		</div>	
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<div class="card">
+				<h5 class="card-header"></h5>
+				<ul class="list-unstyled card-body mb-0 pb-0">
+					<li><strong>Voix 11 : <span class="total11"></span></strong></li>
+					<li><strong>Voix 12 : <span class="total12"></span></strong></li>
+					<li><strong>Voix 13 : <span class="total13"></span></strong></li>
+				</ul>
+			</div>
+		</div>	
 	</div>
-	
+	<br>
+	<div class="row" style="margin:10px">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<label><strong>Région :</strong></label>
+			<select data-live-search="true" name="regionFiltrevote" id="regionFiltrevote">
+				<option value="tous" selected>Tous</option>
+				<?php foreach ($region as $key => $value) { ?>
+					<option value="<?php echo $value->CODE_REGION ?>"><?php echo  $value->LIBELLE_REGION ?></option>
+				<?php } ?>
+			</select>
+			<label><strong>District :</strong></label>
+			<select data-live-search=true id="districtFiltrevote" title="District" required name="ds">
+				<option value="tous" selected>Tous</option>
+			</select>&emsp;
+			<label><strong>commnune :</strong></label>
+			<select data-live-search=true id="communeFiltrevote" title="District" required name="ds">
+				<option value="tous" selected>Tous</option>
+			</select>&emsp;
+			<label><strong>Bureau de vote :</strong></label> 
+			<select data-live-search=true id="bvFiltrevote" title="District" required name="ds">
+				<option value="tous" selected>Tous</option> 
+			</select>&emsp;
+		</div>
+		
+	</div>
+
 </div>
+
 <br>
 
 
@@ -168,54 +171,7 @@
 
 <div class="row" style="margin:10px">
 
-<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-	<div class="card">
-	<h5 class="card-header"></h5>
-	<ul class="list-unstyled card-body mb-0 pb-0">
-		<li class="media mb-3">
-		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/13.jpg" />
-		<div class="media-body align-self-center">
-			<strong>13 - Siteny Thierry Randrianasoloniaiko</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum13"></span> Voting : <span class="total13"> </span> / <span class="totalsum"></span></div>
-			<div class="progress mb-1" style="height: 10px;">
-			<div class="progress-bar" id="sum13" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		</div>
-		</li>
-		<li class="media mb-3">
-		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/3.jpg" />
-		  <div class="media-body align-self-center">
-			<strong>3 - Andry Nirina Rajoelina</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum3"></span> Voting : <span class="total3"></span> / <span class="totalsum"></span></div>
-			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum3" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		  </div>
-		</li>		
-		<li class="media mb-3">
-		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/5.jpg" />
-		  <div class="media-body align-self-center">
-			<strong>5 - Marc Ravalomanana</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum5"></span> Voting : <span class="total5"></span> / <span class="totalsum"></span></div>
-			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum5" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		  </div>
-		</li>
-		<li class="media mb-3">
-		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/10.jpg" />
-		  <div class="media-body align-self-center">
-			<strong>10 - Hery Martial Rajaonarimampianina Rakotoarimanana</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum5"></span> Voting : <span class="total10"></span> / <span class="totalsum"></span></div>
-			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum10" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		  </div>
-		</li>
-		
-	  </ul>
-	</div>
-</div>
+
 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 	<div class="card">
 	<h5 class="card-header"></h5>
@@ -224,9 +180,11 @@
 		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/1.jpg" />
 		<div class="media-body align-self-center">
 			<strong>1 - Tahina Razafinjoelina</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum1"></span> Voting : <span class="total1"> </span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum1"></span> Voting : 1.52%
+			<!-- <span class="total1"> </span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			<div class="progress-bar" id="sum1" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar" id="sum1" role="progressbar" style="width: 1.52%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		</div>
 		</li>
@@ -234,22 +192,27 @@
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/2.jpg" />
 		  <div class="media-body align-self-center">
 			<strong>2 - Hajo Herivelona Andrianainarivelo</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum2"></span> Voting : <span class="total2"></span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum2"></span> Voting : 1.97%
+			<!-- <span class="total2"></span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum2" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			  <div class="progress-bar" id="sum2" role="progressbar" style="width: 1.97%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
-		</li>		
+		</li>	
 		<li class="media mb-3">
-		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/4.jpg" />
+		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/3.jpg" />
 		  <div class="media-body align-self-center">
-			<strong>4 - Roland Ratsirakaa</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum4"></span> Voting : <span class="total4"></span> / <span class="totalsum"></span></div>
+			<strong>3 - Andry Nirina Rajoelina</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum3"></span> Voting : 48.2%
+			<!-- <span class="total3"></span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum4" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			  <div class="progress-bar" id="sum3" role="progressbar" style="width: 48.2%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
-		</li>		
+		</li>			
+		
 		
 	  </ul>
 	</div>
@@ -259,22 +222,57 @@
 	<h5 class="card-header"></h5>
 	<ul class="list-unstyled card-body mb-0 pb-0">
 		<li class="media mb-3">
-		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/6.jpg" />
+		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/4.jpg" />
 		  <div class="media-body align-self-center">
-			<strong>6 - Auguste Richard Paraina</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum6"></span> Voting : <span class="total6"></span> / <span class="totalsum"></span></div>
+			<strong>4 - Roland Ratsirakaa</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum4"></span> Voting : 1.53%
+			<!-- <span class="total4"></span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum6" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			  <div class="progress-bar" id="sum4" role="progressbar" style="width: 1.53%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+		  </div>
+		</li>		
+		<li class="media mb-3">
+		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/5.jpg" />
+		  <div class="media-body align-self-center">
+			<strong>5 - Marc Ravalomanana</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum5"></span> Voting : 14.15%
+			<!-- <span class="total5"></span> / <span class="totalsum"></span> -->
+		</div>
+			<div class="progress mb-1" style="height: 10px;">
+			  <div class="progress-bar" id="sum5" role="progressbar" style="width: 14.15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
 		</li>
 		<li class="media mb-3">
+		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/6.jpg" />
+		  <div class="media-body align-self-center">
+			<strong>6 - Auguste Richard Paraina</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum6"></span> Voting : 0.78%
+			<!-- <span class="total6"></span> / <span class="totalsum"></span> -->
+		</div>
+			<div class="progress mb-1" style="height: 10px;">
+			  <div class="progress-bar" id="sum6" role="progressbar" style="width: 0.78%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+		  </div>
+		</li>	
+	  </ul>
+	</div>
+</div>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	<div class="card">
+	<h5 class="card-header"></h5>
+	<ul class="list-unstyled card-body mb-0 pb-0">
+		<li class="media mb-3">
 		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/7.jpg" />
 		<div class="media-body align-self-center">
 			<strong>7 - Andry Tsiverizo Raobelina Andriamalala</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum7"></span> Voting : <span class="total7"> </span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum7"></span> Voting : 0.7%
+			<!-- <span class="total7"> </span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			<div class="progress-bar" id="sum17" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar" id="sum17" role="progressbar" style="width: 0.7%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		</div>
 		</li>
@@ -282,15 +280,26 @@
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/8.jpg" />
 		  <div class="media-body align-self-center">
 			<strong>8 - Jean Brunelle Razafintsiandraofa</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum3"></span> Voting : <span class="total8"></span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum8"></span> Voting : 1.35%
+			<!-- <span class="total8"></span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum8" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			  <div class="progress-bar" id="sum8" role="progressbar" style="width: 1.35%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
 		</li>		
-		
-		
-		
+		<li class="media mb-3">
+		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/9.jpg" />
+		  <div class="media-body align-self-center">
+			<strong>9 - Lalaina Harilanto Ratsirahonana</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum9"></span> Voting : 0.71%
+			<!-- <span class="total9"></span> / <span class="totalsum"></span> -->
+		</div>
+			<div class="progress mb-1" style="height: 10px;">
+			  <div class="progress-bar" id="sum9" role="progressbar" style="width: 0.71%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+		  </div>
+		</li>				
 	  </ul>
 	</div>
 </div>
@@ -299,12 +308,14 @@
 	<h5 class="card-header"></h5>
 	<ul class="list-unstyled card-body mb-0 pb-0">
 		<li class="media mb-3">
-		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/9.jpg" />
+		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/10.jpg" />
 		  <div class="media-body align-self-center">
-			<strong>9 - Lalaina Harilanto Ratsirahonana</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum9"></span> Voting : <span class="total9"></span> / <span class="totalsum"></span></div>
+			<strong>10 - Hery Martial Rajaonarimampianina Rakotoarimanana</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum10"></span> Voting : 5.59%
+			<!-- <span class="total10"></span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum9" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			  <div class="progress-bar" id="sum10" role="progressbar" style="width: 5.59%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
 		</li>
@@ -312,9 +323,11 @@
 		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/11.jpg" />
 		<div class="media-body align-self-center">
 			<strong>11 - Sendrison Daniela Raderanirina</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum13"></span> Voting : <span class="total11"> </span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum11"></span> Voting : 0.92%
+			<!-- <span class="total11"> </span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			<div class="progress-bar" id="sum11" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar" id="sum11" role="progressbar" style="width: 0.92%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		</div>
 		</li>
@@ -322,13 +335,26 @@
 		  <img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/12.jpg" />
 		  <div class="media-body align-self-center">
 			<strong>12 - Jean-Jacques Jedidia Ratsietison</strong>
-			<div class="small text-muted mb-1">Taux : <span id="textsum3"></span> Voting : <span class="total12"></span> / <span class="totalsum"></span></div>
+			<div class="small text-muted mb-1">Taux : <span id="textsum12"></span> Voting : 0.36%
+			<!-- <span class="total12"></span> / <span class="totalsum"></span> -->
+		</div>
 			<div class="progress mb-1" style="height: 10px;">
-			  <div class="progress-bar" id="sum12" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			  <div class="progress-bar" id="sum12" role="progressbar" style="width: 0.36%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		  </div>
 		</li>		
-				
+		<li class="media mb-3">
+		<img class="rounded mr-3 align-self-center image-icon" src="<?php echo base_url() ?>assets/candidat/13.jpg" />
+		<div class="media-body align-self-center">
+			<strong>13 - Siteny Thierry Randrianasoloniaiko</strong>
+			<div class="small text-muted mb-1">Taux : <span id="textsum13"></span> Voting : 21.3%
+			<!-- <span class="total13"> </span> / <span class="totalsum"></span> -->
+		</div>
+			<div class="progress mb-1" style="height: 10px;">
+			<div class="progress-bar" id="sum13" role="progressbar" style="width: 21.3%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+		</div>
+		</li>		
 	  </ul>
 	</div>
 </div>
@@ -529,7 +555,7 @@
 				$('.totalsum').text(data.resultat.totalsum);
 				$('.totalBV').text(data.resultat.count);
 				$('.blanc').text(data.resultat.blanc);
-				for (let i = 1; i < 14; i++) {							
+				for (let i = 6; i < 13; i++) {							
 					var propertyName = 'sum' + i;
 					var Name = 'total' + i;
 					$('.total' + i).text(data.resultat[Name]);

@@ -78,8 +78,7 @@
                             <span class="title">Délégué</span>
                         </a>
                     </li>
-                <?php  }else {
-                 ?>
+                
                     
                     <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/chartDelege2">
@@ -141,6 +140,8 @@
                             <span class="title">Anomalie</span>
                         </a>
                     </li> -->
+                    <?php  }else {
+                 ?>
     
                     <?php if ($type == "Administrateur") { ?>
                     <!-- <li>
@@ -167,20 +168,20 @@
                             <span class="title">Résultat Global</span>
                         </a>
                     </li>
-                    <li>
+                     <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/resultat3">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!- <i class='fa fa-users'></i>
                             </span>
                             <span class="title">Résultat / PV</span>
                         </a>
                     </li>
-                    <li>
+                   <!-- <li>
                         <a href="<?php echo base_url(); ?>AdminCont/resultat">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!-<i class='fa fa-users'></i> --
                             </span>
                             <span class="title">Résultat SMS</span>
                         </a>
@@ -189,12 +190,12 @@
                         <a href="<?php echo base_url(); ?>Utilisateurs/resultat2">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!- <i class='fa fa-users'></i> --
                             </span>
                             <span class="title">Résultat SMS / BV</span>
                         </a>
-                    </li>
-                    <!-- <li>
+                    </li> 
+                    <!- <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/viewMessage">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
@@ -202,12 +203,12 @@
                             </span>
                             <span class="title">Bureau de votes</span>
                         </a>
-                    </li> -->
+                    </li> --
                     <li>
                         <a href="<?php echo base_url(); ?>Utilisateurs/viewBureau">
                             <span class="icon">
                             <ion-icon name="receipt"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!- <i class='fa fa-users'></i> --
                             </span>
                             <span class="title">Procès-verbal</span>
                         </a>
@@ -216,7 +217,7 @@
                         <a href="<?php echo base_url(); ?>Utilisateurs/index">
                             <span class="icon">
                             <ion-icon name="person"></ion-icon>
-                                <!-- <i class='fa fa-users'></i> -->
+                                <!- <i class='fa fa-users'></i> --
                             </span>
                             <span class="title">Utilisateurs</span>
                         </a>
