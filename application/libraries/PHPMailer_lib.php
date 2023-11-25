@@ -26,7 +26,7 @@ class PHPMailer_lib
             $this->mail->SMTPAuth = true;
             //$this->mail->Username = 'nicotahindraza310501@gmail.com'; // Your google email address
             $this->mail->Username = 'm2manager2@outlook.com'; // Your Outlook email address
-           // $this->mail->Password = 'bflk nsgr dghk drow'; // Your google email password
+           // $this->mail->Password = 'omwx fzmr npfy vbwu'; // Your google email password
             $this->mail->Password = 'hpkevhhfaqafilfk'; // Your Outlook email password
             $this->mail->SMTPSecure = 'tls'; // Enable TLS encryption
             $this->mail->Port = 587; // TCP port to connect to
